@@ -1,0 +1,251 @@
+header
+{
+    background-color: white;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2
+{
+    padding: 30px;
+    color: #d02b4d;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+
+.loginSesiones
+{
+
+    height: 200px;
+    width: auto;
+    display: flex;
+    justify-content: center;   
+}
+
+.loginSesiones form
+{
+    background-color: #d02b4d;
+    
+    width: 350px;
+    padding: 30px; 
+}
+
+form section
+{
+    width: 350px;
+    margin-bottom: 25px;
+}
+
+form section label
+{
+    color: white;
+    width: 140px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+.loginSesiones form section input[type='text']
+{
+    background-color: transparent;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    border-style: none;
+    border-bottom: 2px solid white;
+}
+
+#pass
+{
+    background-color: transparent;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    border-style: none;
+    border-bottom: 2px solid white;
+}
+
+.loginSesiones form input[type='submit']
+{   
+    color: white;
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+}
+
+form p
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 1.1em;
+}
+
+
+
+form input[type='submit']:hover
+{
+    cursor: pointer;
+    color: rgb(192, 191, 191);
+}
+
+.logo
+{
+   
+    left: 0;
+    height: 90px;
+    /*min-width: 90px;*/
+}
+
+h1
+{
+    padding: 30px;
+    color: #d02b4d;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 45px;
+}
+
+.indexTema2
+{
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+    
+}
+
+.indexTema2 h2
+{
+    margin-top: 50px;
+}
+
+.variables
+{
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+    
+}
+
+.variables h2
+{
+    margin-top: 50px;
+}
+
+main
+{
+    display: flex;
+    padding: 50px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+
+
+.boton
+{
+    margin-right: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    background-color: #d02b4d;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 28px;
+    text-decoration: none;
+}
+
+footer
+{
+    position: fixed;
+    bottom: 0;
+    background-color: #d02b4d;
+}
+
+footer p
+{
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.crearCuenta
+{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.boton1
+{
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.boton1:hover
+{
+    background-color: #9c102c;
+    -webkit-transform: scale(.85);
+    transform: scale(.85);
+}
+
+.crearCuenta form
+{
+    border: 3px solid #d02b4d;
+    padding: 90px 150px;
+    border-radius: 25px;
+}
+
+.crearCuenta form section label
+{
+    width: 140px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+.crearCuenta form section input[type='date'], input[type='text'], input[type='password'], input[type='mail']
+{
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    border-bottom: 2px solid #d02b4d;
+}
+
+#passF
+{
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    border-bottom: 2px solid #d02b4d;
+}
+
+form input[type='submit']
+{
+    color: #d02b4d;
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+}
+
+
