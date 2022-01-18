@@ -8,6 +8,11 @@
         //atributo estatico
         public static $numeroProducto=0;
 
+        public static function funcionStatica()
+        {
+            echo self::$numeroProducto."</br>";
+        }
+
         public function muestra()
         {
             echo"<p>".$this->id.
@@ -33,10 +38,10 @@
             $this->$atributo=$value;
         }
 
-        public function __destruct()
+        /*public function __destruct()
         {
             echo "Estoy destruyendo el producto";
-        }
+        }*/
 
         public function __toString()
         {
@@ -44,6 +49,8 @@
             ":".$this->descripcion.":".
             $this->PVP."</p>";
         }
+
+
 
     }
 
