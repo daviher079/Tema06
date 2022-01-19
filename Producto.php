@@ -73,6 +73,13 @@
             ":".$this->descripcion.":".
             $this->PVP."</p>";
         }
+
+        public final function aumentaPrecio($cuanto)
+        {
+                $this->PVP= $this->PVP*(1-$cuanto/100);
+        }
+
+
     }
 
 
