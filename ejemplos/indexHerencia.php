@@ -1,6 +1,9 @@
 <?php
     require "./Ordenador.php";
 
+    require "./otraInterfaz.php";
+    require "./productoDAO.php";
+
     $productoGenerico=new Producto();
     $productoGenerico->setId(1);
     $productoGenerico->setDescripcion('Raton');
@@ -19,7 +22,9 @@
     $ordenador1->aumentaPrecio(5);
     $ordenador1->muestra();
 
+    //$productoDao = new ProductoDAO();
 
-
+    ProductoDAO::save($ordenador1);
+    ProductoDAO::muestra();
 
 ?>
