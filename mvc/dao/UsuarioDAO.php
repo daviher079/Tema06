@@ -7,7 +7,7 @@ class UsuarioDAO implements DAO
 
     public static function findAll()
     {
-        $sql = "select * from usuarios";
+        $sql = "select * from usuario";
         $consulta =ConexionBD::ejecutaConsulta($sql, []);
         $cont =0;
         while($row = $consulta->fetchObject())
@@ -20,6 +20,22 @@ class UsuarioDAO implements DAO
         }
         return $registros;
 
+    }
+
+    public static function validaUser($user, $pass)
+    {
+        $sql = "select * from usuario where codUsuario = ? and password = ?";
+        $consulta =ConexionBD::ejecutaConsulta($sql, [$user, $pass]);
+        $usuario =null;
+        
+        while($row = $consulta->fetchObject())
+        {
+            $usuario = new Usuario($row->codUsuario,
+                $row->nombre, $row->password, $row->Perfil);
+                
+
+        }
+        return $usuario;
     }
 
     //Busca por clave primaria

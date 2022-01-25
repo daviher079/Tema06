@@ -15,14 +15,9 @@
 
     else
     {
-        if(isset($_POST['login']))
+        if(isset($_SESSION['pagina']))
         {
-            $controlador = $controladores['login'];
-            require_once $controlador;
-            exit();
-        }elseif(isset($_POST['registro']))
-        {
-            $controlador=$controladores['registro'];
+            $controlador=$controladores[$_SESSION['pagina']];
             require_once $controlador;
             exit();
         }
@@ -33,5 +28,6 @@
 
     //Si el usuario entra por primera vez
     $_SESSION["vista"] = $vistas["inicio"];
+    $_SESSION["pagina"] = 'inicio';
     require $vistas['layout'];
 ?>

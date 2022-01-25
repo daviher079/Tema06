@@ -10,6 +10,6 @@
 
 
     <input type="submit" value="Registrar" name="registrar">
-
+    <input type="submit" value="Volver" name="volver">
 
 </form>
