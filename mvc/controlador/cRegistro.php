@@ -8,9 +8,8 @@ if(isset($_POST['volver']))
 {
     //que sea la primera vez que se entra en login
 
-    $_SESSION['vista'] = $vistas['login']; 
+    $_SESSION['vista'] = $vistas['registro']; 
     require_once $vistas['layout'];
-
 }
 
 ?>

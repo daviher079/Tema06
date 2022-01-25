@@ -17,8 +17,6 @@
                 
                 $consulta =$con->prepare($sql);
                 $consulta ->execute($parametros);
-
-
     
             }catch(PDOException $ex)
             {
