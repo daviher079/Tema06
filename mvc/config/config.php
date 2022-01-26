@@ -29,6 +29,7 @@ $controladores =
     'inicio' => 'controlador/cInicio.php',
     'login' => 'controlador/cLogin.php',
     'registro' => 'controlador/cRegistro.php',
+    'perfil' => 'controlador/cPerfil.php'
 ];
 
 $vistas = 
@@ -37,6 +38,7 @@ $vistas =
     'login' => 'vista/vLogin.php',
     'layout' => 'vista/vLayout.php',
     'registro' => 'vista/vRegistro.php',
+    'perfil' => 'vista/vPerfil.php'
 ]
 
 ?>

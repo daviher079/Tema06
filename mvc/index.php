@@ -6,7 +6,9 @@
 
     if(isset($_SESSION['validada'])){
 
-        //enviar a donde haga falta
+        $controlador = $controladores[$_SESSION['pagina']];
+        require_once $controlador;
+        exit();
     }
     //Si el usuario está logeando y ha solicitado algo
 
