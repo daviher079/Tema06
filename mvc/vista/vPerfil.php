@@ -1,15 +1,44 @@
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+    
+    <!-- User -->
+    <label  class="form-group"  for="user">User: 
+        <input type="text" name="user" id="user" value="<?php 
+            
+            echo $usuario->codUsuario    
+        ?>"> <!-- Lo muestra -->
+        <input type="hidden" name="user" id="user" value="<?php 
+            
+            echo $usuario->codUsuario    
+        ?>"> <!-- Lo envía -->
+    </label><br><br>
 
-<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+    <!-- Nombre -->
+    <label class="form-group" for="nombre">Nombre: 
+        <input  type="text" name="nombre" id="nombre" value="<?php 
+            
+            echo $usuario->nombre    
+        ?>">
+    </label><br><br>
 
-<label for="">Registrar Usuario</label>
+    <!-- Contraseña -->
+    <label class="form-group" for="pass">Contraseña: 
+        <input  type="password" name="pass" id="pass">
+    </label><br><br>
+    
+    <!-- Repetir contraseña -->
+    <label class="form-group" for="pass">Repetir contraseña: 
+        <input type="password" name="pass2" id="pass2">
+    </label><br><br>
 
-<label for="user">User: <input type="text" name="user" id="user"></label>
-<label for="nombre">Nombre: <input type="text" name="nombre" id="nombre"></label>
-<label for="pass">Contraseña: <input type="text" name="pass" id="pass"></label>
-<label for="pass2">Repetir Contraseña: <input type="text" name="pass2" id="pass2"></label>
-
-
-<input type="submit" value="Registrar" name="registrar">
-<input type="submit" value="Volver" name="volver">
-
+    <!-- Perfil -->
+    <label class="form-group" for="perfil">Perfil: 
+        <input type="text" name="perfil" id="perfil" value="<?php 
+            
+            echo $usuario->perfil    
+        ?>">
+    </label><br><br>
+    
+    <input type="submit" value="Modificar" name="modificar">
+    <input type="submit" value="Volver" name="volver">
+    
 </form>

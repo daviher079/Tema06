@@ -19,6 +19,21 @@
 
         <?php
 
+        if(isset($_SESSION['validada'])){
+        
+            if($_SESSION['perfil'] == 'admini')
+            {
+                ?>
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+
+                    <input type="submit" value="Admi usuario" name="usuarios">
+
+                </form>
+                <?php
+            }
+
+        }
+
         if (isset($_SESSION['validada'])) {
             echo $_SESSION['nombre'];
         ?>

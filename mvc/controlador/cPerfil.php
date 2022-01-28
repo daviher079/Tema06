@@ -28,8 +28,38 @@ elseif(isset($_POST['modificar']))
 
 
    
+}elseif(isset($_POST['usuarios']))
+{
+
+    if($_SESSION['perfil'] == 'admini')
+    {
+        $_SESSION['vista'] = $vistas['listaUsuarios'];
+
+        $lista = UsuarioDAO::findAll();
+
+        require_once $vistas['layout'];   
+    }else
+    {
+        header('Location: 403Forbbiden.php');
+        exit();
+    }
+}elseif(isset($_GET['mostrar']))
+{
+
+    if($_SESSION['perfil']=='admini')
+    {
+        $codUsuario = $_GET['mostrar'];
+        $usuario = UsuarioDAO::buscaById($codUsuario);
+        $_SESSION['vista']=$vistas['perfil'];
+        require_once $vistas['layout'];
+    }
+
+
+
 }else
 {
+
+    //Suponiendo que es mi perfil
     $_SESSION['vista']= $vistas['perfil'];
     require_once $vistas['layout'];
 }
