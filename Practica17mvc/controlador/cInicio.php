@@ -9,6 +9,13 @@ if(isset($_POST['login']))
 {
     unset($_SESSION['validada']);
     session_destroy();
+    if(isset($_COOKIE['recuerdame']))
+    {
+        setcookie('recuerdame[0]',$_COOKIE['recuerdame'][0], time()-31536000, "/" );
+        setcookie('recuerdame[1]',$_COOKIE['recuerdame'][1], time()-31536000, "/" );
+
+    }
+
     header("Location: index.php");
     exit();
 }else if(isset($_POST['perfil']))
@@ -18,8 +25,7 @@ if(isset($_POST['login']))
     exit();
 }
 
-
-
+crearBD();
 $_SESSION['vista'] =$vistas['inicio'];
 require_once $vistas['layout'];
 

@@ -7,9 +7,12 @@ class UsuarioDAO implements DAO
 
     public static function findAll()
     {
-        $sql = "select * from usuario";
-        $consulta =ConexionBD::ejecutaConsulta($sql, []);
+        $sql = "select * from usuarios";
+
+        $consulta = ConexionBD::ejecutaConsulta($sql, []);
         $cont =0;
+        
+        
         while($row = $consulta->fetchObject())
         {
             $usuario = new Usuario($row->codUsuario,
@@ -24,18 +27,60 @@ class UsuarioDAO implements DAO
 
     public static function validaUser($user, $pass)
     {
-        $sql = "select * from usuario where codUsuario = ? and password = ?";
-        $consulta =ConexionBD::ejecutaConsulta($sql, [$user, $pass]);
+        $sql = "select * from usuarios where usuario = ? and clave = ?";
+        $consulta = ConexionBD::ejecutaConsulta($sql, [$user, $pass]);
         $usuario =null;
+
+            while($row = $consulta->fetchObject())
+            {
+                $usuario = new Usuario($row->usuario,
+                    $row->nombre, $row->clave, $row->correo, $row->fechaNacimiento, $row->perfil);
+                    
+            }
+
         
-        while($row = $consulta->fetchObject())
+        return $usuario;
+    }
+
+    public static function paginasUsuario($perfil)
+    {
+        $sql = "select descripcion, url 
+                from paginas p join accede a 
+                on (p.codigo = a.codigoPagina)
+                where codigoPerfil = ?";
+        $consulta = ConexionBD::ejecutaConsulta($sql, [$perfil]);
+                        
+        $paginas=array();
+
+        while($row=$consulta->fetch())
         {
-            $usuario = new Usuario($row->codUsuario,
-                $row->nombre, $row->password, $row->Perfil);
-                
+            $paginas[$row[0]]=$row[1];
+        }
+        
+        return $paginas;
+        
+    }
+
+    public static function buscarUser($user)
+    {
+        
+        $bandera =false;
+
+        $sql = "select usuario from usuarios;";
+
+        $consulta = ConexionBD::ejecutaConsulta($sql, [$user]);
+        
+        
+        while($row = $consulta->fetch())
+        {
+            $usuarioBD=$row['usuario'];
+            if($usuarioBD==$user)
+            {
+                $bandera=true;
+            }
 
         }
-        return $usuario;
+        return $bandera;
     }
 
     //Busca por clave primaria
@@ -53,7 +98,12 @@ class UsuarioDAO implements DAO
     //crea o inserta 
     public static function save($objeto)
     {
-        echo "save ";
+        $consulta = 0;
+        $sql = "insert into usuarios values(?,?,?,?,?,?)";
+        $parametros = array($objeto->usuario, $objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil);
+        $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
+
+        return $consulta;
     }
 
     //borrar

@@ -2,18 +2,22 @@
 
     class Usuario
     {
-        private $codUsuario;
+        private $usuario;
         private $nombre;
-        private $password;
+        private $clave;
+        private $correo;
+        private $fechaNacimiento;
         private $perfil;
         //private $fechaUltimaConexion
 
 
-        function __construct($codU, $nom, $pass, $perfil)
+        function __construct($codU, $nom, $pass, $correo, $fNacimiento, $perfil)
         {
-            $this->codUsuario=$codU;
+            $this->usuario=$codU;
             $this->nombre = $nom;
-            $this->password = $pass;
+            $this->clave = $pass;
+            $this->correo = $correo;
+            $this->fechaNacimiento = $fNacimiento;
             $this->perfil = $perfil; 
         }
 

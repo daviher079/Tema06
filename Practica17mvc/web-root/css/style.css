@@ -1,0 +1,561 @@
+.cabecera
+{
+    width: auto;
+    height: 50px;
+    background-color: #d02b4d;
+    padding: 20px;
+    
+}
+.cabecera #titulo
+{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.4em;
+    float: left;
+}
+
+.user
+{
+    float: right;
+}
+
+
+
+.user form input[type='submit']
+{
+    color: white;
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+}
+
+.user h2
+{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.fondo
+{
+    max-height: 700px;
+    width:100%;
+    margin-bottom: 30px;
+}
+
+.producto
+{  
+    background-color: #d02b4d;
+    width: 200px;
+    height: 175px;
+    float: left;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: baseline;
+    cursor: pointer;
+}
+
+.enlaces
+{
+    color: white;
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.mainProducto
+{
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgProducto
+{
+    border-radius: 25px;
+    width: 575px;
+    margin: 0px 50px 50px 0px;
+}
+
+.datosProducto
+{
+    width: 300px;
+    height: 325px;
+    border: 3px solid #d02b4d;  
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.datosProducto section label
+{
+    width: 230px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    float: left;
+    text-align: left;
+    padding: 2px;
+    margin-bottom: 40px;
+    color: #d02b4d;
+}
+
+.datosProducto form h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.2em;
+    color: #d02b4d;
+    margin-bottom: 20px;
+}
+
+.datosProducto form h2
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.6em;
+    color: #d02b4d;
+    margin-bottom: 30px;
+}
+
+.datosProducto form label
+{
+    width: 140px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    float: left;
+    text-align: left;
+    padding: 2px;
+    color: #d02b4d;
+}
+
+.datosProducto form input[type='number']
+{
+    background-color: transparent;
+    width: 70px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    text-align: right;
+    border-bottom: 2px solid #d02b4d;
+}
+
+.datosProducto form input[type='submit']
+{
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+    float: inherit;
+    margin-top: 25px;
+}
+
+.loginSesiones
+{
+    margin-top: 100px;
+    width: auto;
+    display: flex;
+    justify-content: center;   
+}
+
+.logout
+{
+    margin-top: 100px;
+    height: 200px;
+    width: auto;
+    display: flex;
+    justify-content: center;  
+    align-items: center; 
+}
+
+.logout section
+{
+    text-align: center;
+}
+
+.logout h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5em;
+    color: #d02b4d;
+    margin-bottom: 20px;
+}
+
+.logout a
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    color: #d02b4d;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 1.2em;
+}
+
+.logout a:hover
+{
+    color: #9c102c;
+} 
+
+.loginSesiones form
+{
+    background-color: #d02b4d;
+    width: 350px;
+    padding: 30px; 
+
+}
+
+form section
+{
+    width: 350px;
+    margin-bottom: 25px;
+}
+
+form section label
+{
+    color: white;
+    width: 140px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+.loginSesiones form section input[type='text']
+{
+    background-color: transparent;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    border-style: none;
+    border-bottom: 2px solid white;
+}
+
+#pass
+{
+    background-color: transparent;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    border-style: none;
+    border-bottom: 2px solid white;
+}
+
+.loginSesiones form input[type='submit']
+{   
+    color: white;
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+}
+
+form p
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 1.1em;
+}
+
+form input[type='submit']:hover
+{
+    cursor: pointer;
+    color: rgb(192, 191, 191);
+}
+
+footer
+{
+    position: fixed;
+    bottom: 0;
+    background-color: #d02b4d;
+}
+
+footer p
+{
+    padding: 5px;
+    color: white;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+}
+
+.crearCuenta
+{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+aside
+{
+    width: 260px;
+    height: 92vh;
+    overflow: hidden;
+    background-color: #d02b4d;
+    padding: 20px;
+}
+
+aside h1
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.2em;
+    color: white;
+    margin-bottom: 30px;
+}
+
+aside ul
+{
+    margin-top: 25px;
+    list-style: none;
+}
+aside ul li
+{
+    margin-bottom: 10px;
+}
+
+aside ul li a
+{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 1.2em;
+    
+}
+
+aside ul li a:hover
+{
+    color: rgb(214, 213, 213);
+    
+}
+
+.boton1
+{
+    -webkit-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+.boton1:hover
+{
+    background-color: #9c102c;
+    -webkit-transform: scale(.85);
+    transform: scale(.85);
+}
+
+.crearCuenta form
+{
+    border: 3px solid #d02b4d;
+    padding: 90px 150px;
+    border-radius: 25px;
+}
+
+.crearCuenta form section label
+{
+    width: 140px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+.crearCuenta form section input[type='date'], input[type='text'], input[type='password'], input[type='mail']
+{
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    border-bottom: 2px solid #d02b4d;
+}
+
+#passF
+{
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    border-bottom: 2px solid #d02b4d;
+}
+
+form input[type='submit']
+{
+    color: #d02b4d;
+    float: right;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+    border-style: none;
+    font-size: 1.05em;
+}
+
+.mainModPerfil
+{
+    padding: 40px;
+}
+
+.mainModPerfil h2
+{
+    color: #d02b4d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+}
+
+.mainModPerfil h4 
+{
+    color: #d02b4d;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 45px;
+}
+
+.mainModPerfil form 
+{
+    border: 3px solid #d02b4d;
+    padding: 90px 150px;
+    border-radius: 25px;
+}
+
+.mainModPerfil form section label
+{
+    width: 140px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    float: left;
+    text-align: left;
+    padding: 2px;
+}
+
+
+.mainModPerfil table
+{
+    width:750px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 2px solid #d02b4d;
+    text-align: center;
+}
+
+.mainModPerfil table thead
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    color: #d02b4d;
+    padding: 5px;
+}
+
+.mainModPerfil table th
+{
+    border: 2px solid #d02b4d;
+    text-align: left;
+    font-size: 1.1em;
+    padding: 5px;
+    font-weight: 400;
+    color: #d02b4d;
+    text-align: center;
+    
+}
+
+.mainModPerfil table td
+{
+    padding: 5px;
+    border: 2px solid #d02b4d;
+    font-size: 0.9em;    
+}
+
+.mainModPerfil table td a
+{
+    text-decoration: none;
+    color: #d02b4d;
+
+}
+
+.mainModPerfil table td a:hover
+{
+    color: #9c102c;
+}
+
+.mainModPerfil form input[type="number"]
+{
+    background-color: transparent;
+    width: 200px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d02b4d;
+    border-style: none;
+    border-bottom: 2px solid #d02b4d;
+}
+
+aside h2
+{
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.9em;
+    margin-bottom: 25px;
+}
+
+
+.container
+{
+    display: flex;
+}
+
+.productos
+{
+    padding: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    width: 70%;
+}
+
+.visitas
+{
+    float: right;
+    width: 30%;  
+    padding: 25px;
+}
+
+.visitas h2
+{
+    color: #d02b4d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.9em;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.visitas ul
+{
+    list-style: none;
+}
+
+.visitas ul li
+{
+    margin-bottom: 10px;
+}
+
+.visitas .prVisitado
+{
+    color: #d02b4d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.1em;
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(99, 99, 99, 0.404)
+}
+
+
+
+.listaDatos
+{
+    width: 100%;
+    height: 40px;
+    list-style: none;
+    color: transparent;
+}
+
+
+.listaDatos:hover
+{
+    color: #d02b4d;
+    background-color: rgba(99, 99, 99, 0.404);
+    padding: 5px;
+}

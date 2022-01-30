@@ -1,42 +1,53 @@
 <?php
 //si se ha pulsado el registro
 
-if(isset($_POST['registro']))
+if(isset($_POST['crearCuenta']))
 {
     $_SESSION['pagina']='registro';
     header('Location: index.php');
     exit();
-}elseif(isset($_POST['iniciar']))
+}elseif(isset($_POST['valida']))
 {
     //que haya rellenado los campos y verifique si existe el usuario
-    $todoOK =true;
+    
     //llamamos al valida y retorna true/false
 
-    if($todoOK)
+    if($_POST['user']!='' && $_POST['pass']!='')
     {
-        $user = $_POST['nombre'];
+        $user = $_POST['user'];
         $pass = $_POST['pass'];
-        $pass = hash("SHA256", $user.$pass);
-        $pass = "25c0af9a1dc924c388e66d0acf93ef54885d9783a03131e11f6a21e378e4f70a";
+        //$pass = hash("SHA256", $pass);
+        $encrip = sha1($pass);
 
-        $usuario = UsuarioDAO::validaUser($user, $pass);
+        $usuario = UsuarioDAO::validaUser($user, $encrip);
 
         if($usuario != null)
         {
-                echo "bien";
+                
                 $_SESSION['validada']=true;
-                $_SESSION['user']=$usuario->codUsuario;
-                $_SESSION['nombre']=$user;
+                $_SESSION['user']=$usuario->usuario;
+                $_SESSION['nombre']=$usuario->nombre;
                 $_SESSION['perfil']=$usuario->perfil;
+                $paginas = UsuarioDAO::paginasUsuario($_SESSION['perfil']);
+                $_SESSION['paginas']=$paginas;
+                if(isset($_REQUEST['recordarme']))
+                {
+                    recuerdame();
+                }
                 $_SESSION['pagina']='inicio';
                 header('Location: index.php');
         }else
         {
-           $_SESSION['mensaje'] = "No existe el usuario";
+           $_SESSION['mensaje'] = "Error. El usuario o la contraseña son incorrectos";
            $_SESSION['vista'] = $vistas['login']; 
            require_once $vistas['layout'];
         }
 
+    }else
+    {
+        $_SESSION['mensaje'] = "Rellene los campos para acceder";
+        $_SESSION['vista'] = $vistas['login']; 
+        require_once $vistas['layout'];
     }
 
 }elseif(isset($_POST['volver']))

@@ -1,24 +1,35 @@
-<?php
 
-if(isset($_SESSION['mensaje']))
-{
-    echo $_SESSION['mensaje'];
-}
+<main class="loginSesiones">
+        
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
-?>
+            <?php
 
+                if(isset($_SESSION['mensaje']))
+                {
+                    echo "<p style='text-align: center; margin-bottom:7px'>".$_SESSION['mensaje']."</p>";
+                }
 
-<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            ?>
+            
+            <section>
+                <label for="user">Usuario</label><input type="text" name="user" id="user">
+            </section>
 
-    <label for="">Inicio Sesión</label>
+            <section>
+                <label for="pass">Password</label><input type="password" name="pass" id="pass">
+            </section>
+            <section>
+                <label for="recordarme">Recordarme</label> <input type="checkbox" name="recordarme" id="recordarme">
+            </section>
+            
+            <input type="submit" value="Volver" name="volver">
+            <input type="submit" value="Crear cuenta" name="crearCuenta">
+            <input type="submit" value="Login" name="valida">
+        </form>
 
-    <label for="nombre">Nombre: <input type="text" name="nombre" id="nombre"></label>
-    <label for="pass">Pass: <input type="password" name="pass" id="pass"></label>
-
-    <input type="submit" value="Iniciar Sesión" name="iniciar">
-    <input type="submit" value="Registro" name="registro">
-    <input type="submit" value="Volver" name="volver">
-</form>
+       
+    </main>
 
 <?php
 
