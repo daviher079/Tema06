@@ -66,7 +66,7 @@ class ProductoDAO implements DAO
 
     public static function buscaById($id)
     {
-        $sql = "select * from productos where codigoProducto = ?;";
+        $sql = "select * from productos where codigoProducto =?;";
 
         $consulta = ConexionBD::ejecutaConsulta($sql, [$id]);
         $producto = null;

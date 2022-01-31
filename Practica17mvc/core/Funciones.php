@@ -31,7 +31,6 @@
         echo "<input type='number' id='".$valor."' name='".$valor."' value='".$valor."' min='0' max='10'>";
     }
     
-    
     function recuerdame()
     {
         
@@ -44,8 +43,6 @@
             $encrip=sha1($pass);
             setcookie('recuerdame[0]',$user, time()+31536000, "/" );
             setcookie('recuerdame[1]',$encrip, time()+31536000, "/" );
-        
-
         }
         
     }
@@ -76,7 +73,6 @@
         return $bandera;
     }
 
-
     function validarUsuario($boton)
     {
         $bandera=false;
@@ -93,6 +89,7 @@
         }
         return $bandera;
     }
+
     function validarNombreComp($boton)
     {
         $bandera=true;
@@ -154,6 +151,88 @@
         }
         return $bandera;
     }
+
+
+    function validarCompra()
+    {
+        /**
+         * Si existe el boton de comprar producto en la varaible
+         * superglobal request y la cantidad ha sido validada correctamente
+         * devuelve true y ejecuta la compra
+         */
+        $bandera=true;
+        if(isset($_REQUEST['comprarProducto'])==true)
+        {
+            if(validarCantidad()==true)
+            {
+                $bandera=true;
+            }else
+            {
+                $bandera=false;
+            }
+            
+        }else
+        {
+            $bandera=false;
+        }
+
+        return $bandera;
+    }
+
+    function comprobarCantidad(){
+        /**
+         * Para validar el numero de productos que el usuario ha comprado 
+         * Si el input no esta vacio y la cantidad que solicita el usuario
+         * no es mayor que la de stock se ejecutará la compra
+         */
+        if(!empty($_REQUEST['cantidad']) && isset($_REQUEST['comprarProducto'])){
+            $cantidad = (int)$_REQUEST['cantidad'];
+            $stockFinal = (int)$_REQUEST['stock'];
+
+            if($cantidad>$stockFinal)
+            {
+                label("No puede superar el numero de stock disponible");
+
+            }
+            
+        }   
+        
+        if(empty($_REQUEST['cantidad']) && isset($_REQUEST['comprarProducto']))
+        {
+            label("El Nº de unidades no puede estar vacio");
+        }
+    }
+
+    function validarCantidad()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['cantidad']) && isset($_REQUEST['comprarProducto']))
+        {
+            $cantidad = (int)$_REQUEST['cantidad'];
+            $stockFinal = (int)$_REQUEST['stock'];
+            if($cantidad>$stockFinal)
+            {
+                $bandera=false;
+            }
+        }
+        else
+        {
+            $bandera=false;
+        }  
+
+        return $bandera;
+    }
     
+
+    function comprobarSesion()
+    {
+        $bandera=true;
+            
+        if(validaSession()==false)
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
 
 ?>

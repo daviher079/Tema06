@@ -19,7 +19,7 @@
 
                                         "<form action='". $_SERVER['PHP_SELF']."' method='post'>".
                                             "<input type='submit' value='". $producto->descripcion."' name='producto'>".
-                                            "<input type='hidden' name='codigo' value=' $producto->codigoProducto'>"
+                                            "<input type='hidden' name='codigo' value='$producto->codigoProducto'>"
                                         ."</form>".
     
                                     "</div>";
@@ -30,7 +30,7 @@
 
                                         "<form action='". $_SERVER['PHP_SELF']."' method='post'>".
                                             "<input type='submit' value='". $producto->descripcion."' name='producto'>".
-                                            "<input type='hidden' name='codigo' value=' $producto->codigoProducto'>"
+                                            "<input type='hidden' name='codigo' value='$producto->codigoProducto'>"
                                         ."</form>".
 
                                     "</div>";

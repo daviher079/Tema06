@@ -52,20 +52,19 @@ else
     
     <main class="mainProducto">
             <?php
-            $cadena="../web-root/";
-            $producto = ProductoDAO::buscaById($_REQUEST['codigo']);
-                if(isset($_REQUEST['imagen']))
+            $producto = ProductoDAO::buscaById($_SESSION['codigoProducto']);
+                if($producto->imagenAlta!='')
                 {
-                    $cadena = $cadena."imgProductosGrandes/".$_REQUEST['imagen'];
+                    $cadena = "./web-root/imgProductosGrandes/".$producto->imagenAlta;
                 }else
                 {
-                    $cadena = $cadena."img/store-window-g05f275403_1920.jpg";
+                    $cadena = "./web-root/img/store-window-g05f275403_1920.jpg";
                 }
             ?>
         <img class ="imgProducto" src=<?php echo $cadena ?> >
         
         <?php
-            require_once("./validarCompra.php");
+            
             if(validarCompra()==true)
             {
                 //si la compra es correcta se comprueba si la sesion ha
@@ -78,8 +77,6 @@ else
 
                 }else
                 {
-
-
                     header("location: ./finalizarCompra.php?codigo=".$_REQUEST['codigo']."&stock=".$_REQUEST['stock']."&precio=".$_REQUEST['precio']."&unidades=".$_REQUEST['cantidad']."&descripcion=".$_REQUEST['descripcion']."&imagen=".$_REQUEST['imagen']);
                 }
 

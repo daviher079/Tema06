@@ -26,8 +26,9 @@ if(isset($_POST['login']))
 }elseif(isset($_POST['producto']))
 {
     $_SESSION["pagina"] = "comprarProducto";
-    header("Location: index.php");
-    exit();
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+    
 }
 
 crearBD();
