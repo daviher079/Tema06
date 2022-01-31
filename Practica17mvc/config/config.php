@@ -20,7 +20,9 @@ require "./config/datosBD.php";
 require "./modelo/Conexion.php";
 require "./dao/DAO.php";
 require "./modelo/Usuario.php";
+require "./modelo/Producto.php";
 require "./dao/UsuarioDAO.php";
+require "./dao/ProductoDAO.php";
 
 
 $controladores = 
@@ -28,7 +30,8 @@ $controladores =
     'inicio' => 'controlador/cInicio.php',
     'login' => 'controlador/cLogin.php',
     'registro' => 'controlador/cRegistro.php',
-    'perfil' => 'controlador/cPerfil.php'
+    'perfil' => 'controlador/cPerfil.php',
+    'comprarProducto' => 'controlador/cComprarProducto.php'
 ];
 
 $vistas = 
@@ -37,7 +40,8 @@ $vistas =
     'login' => 'vista/vLogin.php',
     'layout' => 'vista/vLayout.php',
     'registro' => 'vista/vRegistro.php',
-    'perfil' => 'vista/vPerfil.php'
+    'perfil' => 'vista/vPerfil.php',
+    'comprarProducto' => 'vista/vComprarProducto.php'
 ];
 
 

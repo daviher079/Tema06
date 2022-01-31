@@ -2,38 +2,44 @@
 <img class="fondo" src="./web-root/img/tshirt-gc9f1d4dee_1920.jpg"> 
         <div class="container">
             <div class="productos">
-
                 <?php
-                    $array=mostrarProductos();
-                    
-                    foreach ($array as $key => $value) {
-                        if($value['imagenBaja']!="")
-                        {
-                            echo "<a class='enlaces' href='./paginas/comprarProducto.php?codigo=".$key.
-                            "&descripcion=".$value['descripcion']."&precio=".$value['precio'].
-                            "&stock=".$value['stock']."&imagen=".$value['imagenAlta']."'>
-                                <div class='producto' style='background-image: url(./web-root/imgBajas/".$value['imagenBaja']."); background-size: 100% 100%; background-repeat: no-repeat; color: #d02b4d'>". 
-                                    "<ul class='listaDatos'>".
-                                    "<li>".$value['precio']."€</li>".
-                                    "<li>".$value['descripcion']."</li>".
-                                "</div>
-                            </a>";
-                        }else
-                        {
-                            echo "<a class='enlaces' href='./paginas/comprarProducto.php?codigo=".$key.
-                            "&descripcion=".$value['descripcion']."&precio=".$value['precio'].
-                            "&stock=".$value['stock']."'>
-                                <div class='producto'>". 
-                                    $value['precio']."€</br>".
-                                    $value['descripcion']."
-                                </div>
-                            </a>";
+                        $array=ProductoDAO::findAll();
+                        
+                        foreach ($array as $key => $value) {
+                            $producto =new Producto($value->codigoProducto, $value->descripcion, $value->precio, $value->stock, $value->imagenAlta, $value->imagenBaja);
+                            
+                            if($producto->imagenBaja!="")
+                            {
+                                
+                                echo 
+                                    "<div class='producto' 
+                                        style='background-image: url(./web-root/imgBajas/".$producto->imagenBaja."); 
+                                        background-size: 100% 100%; background-repeat: no-repeat; 
+                                        color: #d02b4d'>". 
 
+                                        "<form action='". $_SERVER['PHP_SELF']."' method='post'>".
+                                            "<input type='submit' value='". $producto->descripcion."' name='producto'>".
+                                            "<input type='hidden' name='codigo' value=' $producto->codigoProducto'>"
+                                        ."</form>".
+    
+                                    "</div>";
+                            }else
+                            {
+                                echo 
+                                    "<div class='producto'>". 
+
+                                        "<form action='". $_SERVER['PHP_SELF']."' method='post'>".
+                                            "<input type='submit' value='". $producto->descripcion."' name='producto'>".
+                                            "<input type='hidden' name='codigo' value=' $producto->codigoProducto'>"
+                                        ."</form>".
+
+                                    "</div>";
+
+                            }
+                        
+                        
                         }
-                       
-                    
-                    }
-                ?>
+                    ?>
             </div>
 
             <div class="visitas">
