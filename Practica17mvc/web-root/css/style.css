@@ -569,3 +569,47 @@ form section
 {
     margin-bottom: 37px;
 }
+
+.menu
+{
+    background-image: url(../img/menuBlanco-01.png);
+    padding:25px 20px 10px 0px ;
+    cursor:pointer; 
+    background-size: 30px 25px; 
+    background-repeat: no-repeat;
+    float: left;
+}
+
+#menu nav
+{
+    width:20%;
+    max-height:0px;
+    overflow:hidden;
+    transition: 1s all;
+}
+
+
+#menu nav ul {
+  
+    list-style:none;
+  }
+  
+#menu nav ul li input[type='submit']{
+    
+    text-decoration:none;
+    border-bottom:1px solid #d02b4d;
+    background-color:white;
+    color:#d02b4d;
+    font-size:1.2em;
+    width: 150px;
+    padding:5px;
+    float: left;
+  }
+
+  .allProductos
+  {
+      padding: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      float: left;
+  }

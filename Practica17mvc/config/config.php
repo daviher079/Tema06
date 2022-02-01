@@ -32,7 +32,8 @@ $controladores =
     'registro' => 'controlador/cRegistro.php',
     'perfil' => 'controlador/cPerfil.php',
     'comprarProducto' => 'controlador/cComprarProducto.php',
-    'finalizarCompra' => 'controlador/cFinalizarCompra.php'
+    'finalizarCompra' => 'controlador/cFinalizarCompra.php',
+    'verProductos' => 'controlador/cVerProductos.php'
 ];
 
 $vistas = 
@@ -43,7 +44,8 @@ $vistas =
     'registro' => 'vista/vRegistro.php',
     'perfil' => 'vista/vPerfil.php',
     'comprarProducto' => 'vista/vComprarProducto.php',
-    'finalizarCompra' => 'vista/vFinalizarCompra.php'
+    'finalizarCompra' => 'vista/vFinalizarCompra.php',
+    'verProductos' => 'vista/vVerProductos.php'
 ];
 
 
@@ -51,7 +53,6 @@ $vistas =
 
 function crearBD()
 {
-
     try
     {
         

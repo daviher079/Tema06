@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="./web-root/css/resetCSS.css">
     <link rel="stylesheet" href="./web-root/css/style.css">
     <script src="./web-root/js/recogerDeseoUsuario.js"></script>
+    
+    
     <title>Tienda Online</title>
 </head>
 
@@ -39,7 +41,28 @@
             y dos botones uno de perfil y otro de logout
         -->
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-            <input type="image" value="Deseos" name="volver" src="./web-root/img/corazon.png" height="18px">
+            <div class="menu" id="menu" >
+                <nav id="navega">
+                    <ul>
+                        <li>
+                            <input type="submit" value="Ver Productos" id="verProductos" name="verProductos">
+                        </li>
+                        <?php
+                            if (isset($_SESSION['validada'])) {
+                        ?>
+                        <li>
+                            <input type="submit" value="Lista de Deseos" id="listaDeseos" name="listaDeseos">
+                        </li>
+
+                        <?php
+                            }
+                        ?>
+                    </ul>
+                </nav>
+                
+
+            </div>
+            
             <input type="submit" value="Tienda Online" id="titulo" name="volver">
         </form>
         <?php
@@ -88,7 +111,7 @@
         ?>
 
     </main>
-    
+    <script src="./web-root/js/menuLayout.js"></script>
 </body>
 
 </html>

@@ -54,6 +54,11 @@ elseif(isset($_POST['login']))
     header('Location: index.php');
     exit();
    
+}elseif(isset($_POST['verProductos']))
+{
+    $_SESSION["pagina"] = "verProductos";
+    header("Location: index.php");
+    exit();
 }else
 {
     $_SESSION['vista']= $vistas['registro'];

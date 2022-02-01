@@ -55,6 +55,11 @@ if(isset($_POST['crearCuenta']))
     $_SESSION['pagina']='inicio';
     header('Location: index.php');
     exit();
+}elseif(isset($_POST['verProductos']))
+{
+    $_SESSION["pagina"] = "verProductos";
+    header("Location: index.php");
+    exit();
 }else
 {
     //que sea la primera vez que se entra en login

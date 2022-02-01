@@ -49,6 +49,11 @@ elseif(isset($_POST['modificar']))
 
 
 
+}elseif(isset($_POST['verProductos']))
+{
+    $_SESSION["pagina"] = "verProductos";
+    header("Location: index.php");
+    exit();
 }else
 {
 

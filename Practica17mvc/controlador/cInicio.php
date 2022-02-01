@@ -30,6 +30,11 @@ if(isset($_POST['login']))
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
     
+}elseif(isset($_POST['verProductos']))
+{
+    $_SESSION["pagina"] = "verProductos";
+    header("Location: index.php");
+    exit();
 }
 
 crearBD();
