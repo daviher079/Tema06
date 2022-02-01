@@ -23,7 +23,6 @@
                 <label for="recordarme">Recordarme</label> <input type="checkbox" name="recordarme" id="recordarme">
             </section>
             
-            <input type="submit" value="Volver" name="volver">
             <input type="submit" value="Crear cuenta" name="crearCuenta">
             <input type="submit" value="Login" name="valida">
         </form>

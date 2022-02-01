@@ -51,10 +51,18 @@
                         echo "<ul>";
                         foreach ($arrayProductosVisitados as $key => $value) {
                     
-                            $arrayDatosProducto=VerProducto($value);
-                            echo  "<li><a class='prVisitado' href='./paginas/comprarProducto.php?codigo=".$arrayDatosProducto[0].
+                            $producto = ProductoDAO::buscaById($value);
+                            /*echo  "<li><a class='prVisitado' href='./paginas/comprarProducto.php?codigo=".$producto->codigoProducto.
                         "&descripcion=".$arrayDatosProducto[1]."&precio=".$arrayDatosProducto[2].
-                        "&stock=".$arrayDatosProducto[3]."'>".$arrayDatosProducto[1]."</a></li>";
+                        "&stock=".$arrayDatosProducto[3]."'>".$arrayDatosProducto[1]."</a></li>";*/
+                        echo "<li>".
+
+                            "<form action='". $_SERVER['PHP_SELF']."' method='post'>".
+                                "<input type='submit' value='". $producto->descripcion."' name='producto'>".
+                                "<input type='hidden' name='codigo' value='$producto->codigoProducto'>"
+                            ."</form>"
+
+                        ."</li>";
         
                         }
                         echo "</ul>";

@@ -510,7 +510,6 @@ aside h2
 {
     float: right;
     width: 30%;  
-    padding: 25px;
 }
 
 .visitas h2
@@ -525,6 +524,7 @@ aside h2
 .visitas ul
 {
     list-style: none;
+    width: 200px;
 }
 
 .visitas ul li
@@ -563,4 +563,9 @@ aside h2
 #deseo
 {
     display: none;
+}
+
+form section
+{
+    margin-bottom: 37px;
 }

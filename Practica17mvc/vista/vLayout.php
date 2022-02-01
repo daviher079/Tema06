@@ -28,6 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./web-root/css/resetCSS.css">
     <link rel="stylesheet" href="./web-root/css/style.css">
+    <script src="./web-root/js/recogerDeseoUsuario.js"></script>
     <title>Tienda Online</title>
 </head>
 
@@ -38,6 +39,7 @@
             y dos botones uno de perfil y otro de logout
         -->
         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+            <input type="image" value="Deseos" name="volver" src="./web-root/img/corazon.png" height="18px">
             <input type="submit" value="Tienda Online" id="titulo" name="volver">
         </form>
         <?php

@@ -18,6 +18,7 @@ if(isset($_POST['login']))
 
     header("Location: index.php");
     exit();
+    
 }else if(isset($_POST['perfil']))
 {
     $_SESSION["pagina"] = "perfil";

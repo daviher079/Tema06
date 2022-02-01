@@ -31,7 +31,8 @@ $controladores =
     'login' => 'controlador/cLogin.php',
     'registro' => 'controlador/cRegistro.php',
     'perfil' => 'controlador/cPerfil.php',
-    'comprarProducto' => 'controlador/cComprarProducto.php'
+    'comprarProducto' => 'controlador/cComprarProducto.php',
+    'finalizarCompra' => 'controlador/cFinalizarCompra.php'
 ];
 
 $vistas = 
@@ -41,7 +42,8 @@ $vistas =
     'layout' => 'vista/vLayout.php',
     'registro' => 'vista/vRegistro.php',
     'perfil' => 'vista/vPerfil.php',
-    'comprarProducto' => 'vista/vComprarProducto.php'
+    'comprarProducto' => 'vista/vComprarProducto.php',
+    'finalizarCompra' => 'vista/vFinalizarCompra.php'
 ];
 
 

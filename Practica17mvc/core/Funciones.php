@@ -47,21 +47,24 @@
         
     }
 
-    function recordarGenerico($var, $boton){
+    function recordarGenerico($var, $boton)
+    {
         if(!empty($_REQUEST[$var])&& isset($_REQUEST[$boton]))
         {
             echo $_REQUEST[$var];        
         }
     }
 
-    function comprobarGenerico($var, $boton){
+    function comprobarGenerico($var, $boton)
+    {
         if(empty($_REQUEST[$var]) && isset($_REQUEST[$boton])){
             
             label("Debe haber un campo ".$var);
         }           
     }
 
-    function expresionGenerico($patron, $var, $boton){
+    function expresionGenerico($patron, $var, $boton)
+    {
         
         $bandera=true;
         $valida = preg_match($patron, $var);
@@ -153,24 +156,18 @@
     }
 
 
-    function validarCompra()
+    function validarCompra($cantidad, $stockFinal)
     {
         /**
          * Si existe el boton de comprar producto en la varaible
          * superglobal request y la cantidad ha sido validada correctamente
          * devuelve true y ejecuta la compra
          */
-        $bandera=true;
-        if(isset($_REQUEST['comprarProducto'])==true)
+        $bandera=false;
+        
+        if(validarCantidad($cantidad, $stockFinal)==true)
         {
-            if(validarCantidad()==true)
-            {
-                $bandera=true;
-            }else
-            {
-                $bandera=false;
-            }
-            
+            $bandera=true;
         }else
         {
             $bandera=false;
@@ -178,6 +175,27 @@
 
         return $bandera;
     }
+
+    function validarCantidad($cantidad, $stockFinal)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['cantidad']))
+        {
+            $cantidad = (int)$cantidad;
+            $stockFinal = (int)$stockFinal;
+            if($cantidad>$stockFinal)
+            {
+                $bandera=false;
+            }
+        }
+        else
+        {
+            $bandera=false;
+        }  
+
+        return $bandera;
+    }
+
 
     function comprobarCantidad(){
         /**
@@ -203,35 +221,18 @@
         }
     }
 
-    function validarCantidad()
-    {
-        $bandera=true;
-        if(!empty($_REQUEST['cantidad']) && isset($_REQUEST['comprarProducto']))
-        {
-            $cantidad = (int)$_REQUEST['cantidad'];
-            $stockFinal = (int)$_REQUEST['stock'];
-            if($cantidad>$stockFinal)
-            {
-                $bandera=false;
-            }
-        }
-        else
-        {
-            $bandera=false;
-        }  
-
-        return $bandera;
-    }
-    
 
     function comprobarSesion()
     {
         $bandera=true;
-            
-        if(validaSession()==false)
+           
+        if(!isset($_SESSION['validada']))
         {
             $bandera=false;
+
         }
+
+        
         return $bandera;
     }
 
