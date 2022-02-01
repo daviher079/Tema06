@@ -23,16 +23,51 @@ if(isset($_POST['logout']))
     header('Location: index.php');
     exit();
 }
-elseif(isset($_POST['modificar']))
+elseif(isset($_POST['modificarPerfil']))
 {
     //al modificar vuelve a la misma
     //pagina pero con los datos nuevos
-    $todoOK=true; //validar los datos introducidos
 
-    if($todoOK)
+    $boton ='modificarPerfil';
+
+    if(validarNombreComp($boton)==true && validarMail($boton) == true && validarFecha($boton) ==true && validarPass($boton)==true)
     {
+        
+            $con= new PDO("mysql:host=".IP.";dbname=".BBDD, USER, PASS);
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $preparada=$con->prepare("update usuarios 
+                    set clave = ?, 
+                    nombre = ?, 
+                    correo = ?, 
+                    fechaNacimiento = ?,
+                    perfil = ? 
+                    WHERE usuario = ?");
+            $con->beginTransaction();
 
-    }
+            $user=$_REQUEST['user'];
+            $nCompleto=$_REQUEST['nCompleto'];
+            $_SESSION['nombre']=$nCompleto;
+            $cElectronico=$_REQUEST['correo'];
+            $fecha=$_REQUEST['fecha'];
+            $pass=$_REQUEST['pass'];
+            $perfil=$_SESSION['perfil'];
+
+            $arrayParametros=array($pass, $nCompleto, $cElectronico, $fecha, $perfil, $user);
+            $preparada->execute($arrayParametros);    
+
+            $con->commit();
+            $preparada->closeCursor();
+        
+        
+
+        $bandera=true;
+    }   
+    else{
+        
+        $bandera = false;
+    } 
+
 
 
    

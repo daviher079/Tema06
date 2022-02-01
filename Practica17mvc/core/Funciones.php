@@ -196,7 +196,6 @@
         return $bandera;
     }
 
-
     function comprobarCantidad(){
         /**
          * Para validar el numero de productos que el usuario ha comprado 
@@ -221,7 +220,6 @@
         }
     }
 
-
     function comprobarSesion()
     {
         $bandera=true;
@@ -235,5 +233,16 @@
         
         return $bandera;
     }
+
+    function recordarPass($var, $boton)
+    {
+        if(!empty($_REQUEST[$var])&& isset($_REQUEST[$boton]))
+        {
+            echo $_REQUEST[$var];        
+        }
+
+    }
+
+    
 
 ?>

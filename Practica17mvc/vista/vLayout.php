@@ -40,34 +40,41 @@
             mostrar un boton de ir al login si no está logueado
             y dos botones uno de perfil y otro de logout
         -->
-        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-            <div class="menu" id="menu" >
-                <nav id="navega">
-                    <ul>
-                        <li>
-                            <input type="submit" value="Ver Productos" id="verProductos" name="verProductos">
-                        </li>
-                        <?php
-                            if (isset($_SESSION['validada'])) {
-                        ?>
-                        <li>
-                            <input type="submit" value="Lista de Deseos" id="listaDeseos" name="listaDeseos">
-                        </li>
+        <div>
+            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                <div class="menu" id="menu" >
+                    <nav id="navega">
+                        <ul>
+                            <li>
+                                <input type="submit" value="Ver Productos" id="verProductos" name="verProductos">
+                            </li>
+                            <?php
+                                if (isset($_SESSION['validada'])) {
+                            ?>
+                            <li>
+                                <input type="submit" value="Lista de Deseos" id="listaDeseos" name="listaDeseos">
+                            </li>
 
-                        <?php
-                            }
-                        ?>
-                    </ul>
-                </nav>
-                
+                            <?php
+                                }
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
+            </form>
+        </div>
 
-            </div>
-            
-            <input type="submit" value="Tienda Online" id="titulo" name="volver">
-        </form>
+        <div>
+            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                <input type="submit" value="Tienda Online" id="titulo" name="volver">   
+            </form>
+        </div>
+
+        
+        <div class="user">                     
+        
         <?php
-        echo "<div class='user'>";
-
+        
         if (isset($_SESSION['validada'])) {
             ?>
             
@@ -92,8 +99,6 @@
         echo "</div>";
         ?>
     </header>
-
-    
 
     <main>
         <?php

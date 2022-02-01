@@ -14,21 +14,85 @@
     */
 ?>
     
-    <aside>
-
-        <?php
+<main class="mainModPerfil">
             
-            echo"<ul>";
-            /**
-             * Se recorren las páginas a las que puede acceder al usuario
-             */
+    <h2>Modificar perfil</h2>
 
-             /**
-              * Duda como insertar las paginas en la BD para hacer el MVC
-              */
-                foreach ($_SESSION['paginas'] as $key => $value) {
-                    echo" <li><a class='boton' href='./".$value."'>".$key."</a> </li>";
-                }
-            echo "</ul>";    
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+        <?php 
+                $usuario = UsuarioDAO::buscaById($_SESSION['user']);
         ?>
-    </aside>   
+        
+        <input type="hidden" name="passArray" value="<?php echo $usuario->clave;?>">
+            <section>
+                <label for="user">Usuario</label>
+                <input style="color: #c57485;" type="text" onfocus="this.blur()" name="user" placeholder="Usuario" id="user" readonly="readonly" value="<?php echo $usuario->usuario ?>">
+            </section>
+
+            <section>
+                <label for="nCompleto">N. Completo</label>
+                <input type="text" name="nCompleto" placeholder="Nombre completo" id="nCompleto"  value="<?php recordarGenerico("nCompleto",$usuario->nombre)?>">
+                <?php
+                    if(isset($_REQUEST['modificarPerfil']) && expresionGenerico(PATRONNOMBRECOMPLETO, $usuario->nombre)==false)
+                    {
+                        label("El nombre introducido no es valido. Deben tener un mínimo de 3 caracteres el nombre y los 2 apellidos<br>");
+                    }
+                    comprobarGenerico("nCompleto", 'modificarPerfil');
+                ?>
+            </section>
+
+            <section>
+                <label for="correo">C. Electronico</label>
+                <input type="mail" name="correo" placeholder="Correo electronico" id="correo" value="<?php recordarGenerico("correo",$usuario->nombre)?>">
+                <?php
+                    comprobarGenerico("correo", 'modificarPerfil');
+                ?>
+            </section>
+
+            <section>
+                <label for="fecha">F. Nacimiento</label>
+                <input type="date" name="fecha" id="fecha" value="<?php recordarGenerico("fecha", $usuario->fechaNacimiento)?>">
+                <?php
+                    comprobarGenerico("fecha", 'modificarPerfil');
+                ?>
+            </section>
+
+            <section>
+                <label for="pass">Contraseña</label>
+                <input type="password" name="pass" id="passF" value="<?php recordarPass("pass", 'modificarPerfil')?>">
+                <?php
+
+                    if(isset($_REQUEST['modificarPerfil']))
+                    {
+                        $passFormu=sha1($_REQUEST['pass']);
+                        if($passFormu==$_REQUEST['passArray'])
+                        {
+                            label("Error no puede introducir la misma contraseña que ya tenía<br>");
+                        }
+                        elseif(validarPass()==false)
+                        {
+                            label("Error. Asegurese de haber introducido la misma contraseña en los dos campos<br>");
+                            $_REQUEST['pass']="";
+                            $_REQUEST['rPass']="";
+
+                        }
+                    }
+                    comprobarGenerico("pass", 'modificarPerfil');
+                ?>
+            </section>
+
+            <section>
+                <label for="rPass">Rep. Contraseña</label>
+                <input type="password" name="rPass" id="rPass" value="<?php recordarPass("rPass", 'modificarPerfil')?>">
+                <?php
+                    comprobarGenerico("rPass", 'modificarPerfil');
+                ?>
+            </section>
+            
+            <input type="submit" value="Modificar perfil" name="modificarPerfil">
+        
+
+    </form>
+
+           
+</main>

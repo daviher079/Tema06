@@ -4,6 +4,8 @@
     height: 50px;
     background-color: #d02b4d;
     padding: 20px;
+    display: flex;
+            justify-content:space-between;
     
 }
 .cabecera #titulo
@@ -18,8 +20,6 @@
 {
     float: right;
 }
-
-
 
 .user form input[type='submit']
 {
@@ -542,8 +542,6 @@ aside h2
     background-color: rgba(99, 99, 99, 0.404)
 }
 
-
-
 .listaDatos
 {
     width: 100%;
@@ -551,7 +549,6 @@ aside h2
     list-style: none;
     color: transparent;
 }
-
 
 .listaDatos:hover
 {
@@ -578,6 +575,7 @@ form section
     background-size: 30px 25px; 
     background-repeat: no-repeat;
     float: left;
+    position: absolute;
 }
 
 #menu nav

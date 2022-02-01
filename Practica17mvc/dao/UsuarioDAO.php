@@ -86,7 +86,16 @@ class UsuarioDAO implements DAO
     //Busca por clave primaria
     public static function buscaById($id)
     {
-        echo "buscaByID ".$id;
+        $sql = "select * from usuarios where usuario = ?";
+        $consulta = ConexionBD::ejecutaConsulta($sql, [$id]);
+        $usuario =null;
+
+        while($row = $consulta->fetchObject())
+        {
+            $usuario = new Usuario($row->usuario, $row->nombre, $row->clave, $row->correo, $row->fechaNacimiento, $row->perfil);  
+        }
+
+        return $usuario;
     }
 
     //modifica o actualiza

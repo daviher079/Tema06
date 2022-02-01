@@ -43,8 +43,11 @@ if(isset($_POST['volver']))
 
                 }
             
-                
-            }   
+            }else
+            {
+                $_SESSION['vista']= $vistas['registro'];
+                require_once $vistas['layout'];
+            }
             
    
 }

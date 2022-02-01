@@ -37,7 +37,6 @@
         require_once("./validarCompra.php");
             if(isset($_REQUEST['finalizarCompra']))
             {
-                
                 generarVenta();
                 //funcion que genera una compra
 
