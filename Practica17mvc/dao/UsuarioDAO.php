@@ -90,8 +90,14 @@ class UsuarioDAO implements DAO
             fechaNacimiento = ?,
             perfil = ? 
             WHERE usuario = ?";
+            
         $parametros = array($objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil, $objeto->usuario);
-        $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
+
+        $arrayParametros = [
+            $sql => $parametros
+        ];
+
+        $consulta = ConexionBD::ejecutaTransaccion($arrayParametros);
     
         return $consulta;
     }
@@ -102,7 +108,11 @@ class UsuarioDAO implements DAO
         $consulta = 0;
         $sql = "insert into usuarios values(?,?,?,?,?,?)";
         $parametros = array($objeto->usuario, $objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil);
-        $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
+
+        $arrayParametros = [
+            $sql => $parametros
+        ];
+        $consulta = ConexionBD::ejecutaTransaccion($arrayParametros);
 
         return $consulta;
     }

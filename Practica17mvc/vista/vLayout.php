@@ -55,26 +55,28 @@
 
                             <?php
                                 }
-                                if($_SESSION['perfil']=='ADM01'){
-
+                                if(isset($_SESSION['perfil'])){
+                                    if($_SESSION['perfil']=='ADM01')
+                                    {
                             ?>
-                            <li>
-                                <input type="submit" value="Insertar productos" id="insertarProductos" name="insertarProductos">
-                            </li>
+                                <li>
+                                    <input type="submit" value="Insertar productos" id="insertarProductos" name="insertarProductos">
+                                </li>
 
-                            <li>
-                                <input type="submit" value="Modificar productos" id="modificarProducto" name="modificarProductos">
-                            </li>
+                                <li>
+                                    <input type="submit" value="Modificar productos" id="modificarProducto" name="modificarProductos">
+                                </li>
 
-                            <li>
-                                <input type="submit" value="Mostrar ventas" id="mostrarVentas" name="mostrarVentas">
-                            </li>
+                                <li>
+                                    <input type="submit" value="Mostrar ventas" id="mostrarVentas" name="mostrarVentas">
+                                </li>
 
-                            <li>
-                                <input type="submit" value="Mostrar albaranes" id="mostrarAlbaranes" name="mostrarAlbaranes">
-                            </li>
-                            <?php                            
-                                }
+                                <li>
+                                    <input type="submit" value="Mostrar albaranes" id="mostrarAlbaranes" name="mostrarAlbaranes">
+                                </li>
+                            <?php  
+                                    }                          
+                                
                                 if($_SESSION['perfil']=='MOD01'){
                             ?>
                                 <li>
@@ -90,6 +92,7 @@
                                 </li>
                             <?php                            
                                 }
+                            }
                                 
                             ?>
                         </ul>
@@ -107,31 +110,31 @@
         
         <div class="user">                     
         
-        <?php
-        
-        if (isset($_SESSION['validada'])) {
-            ?>
-            
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                <input type="submit" value="Perfil" name="perfil">
-                <input type="submit" value="Logout" name="logout">
-            </form>
             <?php
+            
+            if (isset($_SESSION['validada'])) {
+                ?>
+                
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+                    <input type="submit" value="Perfil" name="perfil">
+                    <input type="submit" value="Logout" name="logout">
+                </form>
+                <?php
 
-            echo "<h2 style='float:left'>".$_SESSION['nombre']."</h2>";
-        } else {
-        ?>
+                echo "<h2 style='float:left'>".$_SESSION['nombre']."</h2>";
+            } else {
+            ?>
 
-            <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
 
-                <input type="submit" value="Login" name="login">
+                    <input type="submit" value="Login" name="login">
 
-            </form>
+                </form>
 
-        <?php
-        }
-        echo "</div>";
-        ?>
+            <?php
+            }
+            ?>
+        </div>
     </header>
 
     <main>

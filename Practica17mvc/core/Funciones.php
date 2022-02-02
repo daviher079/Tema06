@@ -291,7 +291,7 @@
              * Se actualiza el stock del producto 
              */
             $preparada=$con->prepare("
-            UPDATE productos SET stock = ? WHERE codigoProducto = ?;
+                UPDATE productos SET stock = stock - ? WHERE codigoProducto = ?;
             ");
             
             $arrayUpdate=array($stockFinal, $codigo);
@@ -334,52 +334,6 @@
     }
     
 
-function addDeseo()
-{
-    if(isset($_POST['codigo']))
-    {
-        session_start();
-        $codigo = $_POST['codigo'];
-        $usuario = $_SESSION['usuario'];
-
-        if(!isset($_COOKIE[$usuario]))
-        {
-            setcookie($usuario.'[0]',$codigo, time()+31536000, "/" );
-            //setcookie('visitado['.$key.']',$value, time()+31536000, "/");
-            $prueba =0;
-            echo $prueba;
-        }else
-        {
-            $arrayDeseos=$_COOKIE[$usuario];
-            array_unshift($arrayDeseos, $codigo);
-
-            foreach ($arrayDeseos as $key => $value) {
-                setcookie($usuario.'['.$key.']',$value, time()+31536000, "/" );
-            }
-
-        }
-    }
-}
-
-function deleteDeseo()
-{
-    if(isset($_POST['codigo']))
-    {
-        session_start();
-        $codigo = $_POST['codigo'];
-        $usuario = $_SESSION['usuario'];
-        $arrayDeseos=$_COOKIE[$usuario];
-        if(in_array($codigo, $arrayDeseos))
-        {
-            foreach ($arrayDeseos as $key => $value) {
-                if($codigo==$value)
-                {
-                    setcookie($usuario.'['.$key.']',$value, time()-31536000, "/" );
-                }
-            }
-        }
-    }
-}
 
     
 

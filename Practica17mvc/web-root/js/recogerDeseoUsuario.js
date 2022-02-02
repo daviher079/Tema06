@@ -29,7 +29,7 @@ function ajax() {
 function enviar() {
     if (miXHR) {
         //Si existe el objeto miXHR
-        var url = '../../controlador/cProducto.php';
+        var url = './core/FuncionesCookies.php';
 
         miXHR.open('POST', url, true); 
         //Abrimos la url, true=ASINCRONA

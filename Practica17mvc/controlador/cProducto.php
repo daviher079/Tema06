@@ -63,9 +63,7 @@ elseif(isset($_POST['volver']))
     
 }elseif(isset($_POST['producto']))
 {
-    /*$_SESSION['pagina']='comprarProducto';
-    header('Location: index.php');
-    exit();*/
+
     if(isset($_POST['codigo']))
     {
         $_SESSION['codigoProducto']=$_POST['codigo'];
@@ -77,27 +75,35 @@ elseif(isset($_POST['volver']))
     
 }elseif(isset($_POST['listaDeseos']))
 {
-    if(isset($_POST['accion']))
-    {
-
-        if($_POST['accion']=="true")
-        {
-            addDeseo($_POST['codigo']);
-        }else
-        {
-            deleteDeseo($_POST['codigo']);
-        }
-
-    }
+    
     $_SESSION['vista'] = $vistas['listaDeseos'];
     require_once $vistas['layout'];
 }
 else
 {
     
+    if($_SESSION['vista']==$vistas['listaDeseos'])
+    {
+       
+        $_SESSION['vista'] = $vistas['listaDeseos'];
+        require_once $vistas['layout'];
+    }
+    elseif($_SESSION['vista']==$vistas['comprarProducto'])
+    {
+        if(isset($_POST['codigo']))
+        {
+            $_SESSION['codigoProducto']=$_POST['codigo'];
 
-    $_SESSION['vista'] = $vistas['verProductos']; 
-    require_once $vistas['layout'];
+        }
+
+        $_SESSION['vista'] = $vistas['comprarProducto'];
+        require_once $vistas['layout'];
+    }else
+    {
+        $_SESSION['vista'] = $vistas['verProductos']; 
+        require_once $vistas['layout'];
+
+    }
 
     
 }
