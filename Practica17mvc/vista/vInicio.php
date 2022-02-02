@@ -52,9 +52,7 @@
                         foreach ($arrayProductosVisitados as $key => $value) {
                     
                             $producto = ProductoDAO::buscaById($value);
-                            /*echo  "<li><a class='prVisitado' href='./paginas/comprarProducto.php?codigo=".$producto->codigoProducto.
-                        "&descripcion=".$arrayDatosProducto[1]."&precio=".$arrayDatosProducto[2].
-                        "&stock=".$arrayDatosProducto[3]."'>".$arrayDatosProducto[1]."</a></li>";*/
+                            
                         echo "<li>".
 
                             "<form action='". $_SERVER['PHP_SELF']."' method='post'>".

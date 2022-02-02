@@ -42,25 +42,6 @@ class UsuarioDAO implements DAO
         return $usuario;
     }
 
-    public static function paginasUsuario($perfil)
-    {
-        $sql = "select descripcion, url 
-                from paginas p join accede a 
-                on (p.codigo = a.codigoPagina)
-                where codigoPerfil = ?";
-        $consulta = ConexionBD::ejecutaConsulta($sql, [$perfil]);
-                        
-        $paginas=array();
-
-        while($row=$consulta->fetch())
-        {
-            $paginas[$row[0]]=$row[1];
-        }
-        
-        return $paginas;
-        
-    }
-
     public static function buscarUser($user)
     {
         
@@ -101,7 +82,18 @@ class UsuarioDAO implements DAO
     //modifica o actualiza
     public static function update($objeto)
     {
-        echo "update ";
+        $consulta = 0;
+        $sql="update usuarios 
+            set clave = ?, 
+            nombre = ?, 
+            correo = ?, 
+            fechaNacimiento = ?,
+            perfil = ? 
+            WHERE usuario = ?";
+        $parametros = array($objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil, $objeto->usuario);
+        $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
+    
+        return $consulta;
     }
     
     //crea o inserta 

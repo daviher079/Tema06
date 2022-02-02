@@ -55,6 +55,16 @@
         }
     }
 
+    function recordarGenericoMod($var, $nombre, $boton){
+        if(!empty($_REQUEST[$var])&& isset($_REQUEST[$boton]))
+        {
+            echo $_REQUEST[$var];        
+        }else
+        {
+            echo $nombre;
+        }
+    }
+
     function comprobarGenerico($var, $boton)
     {
         if(empty($_REQUEST[$var]) && isset($_REQUEST[$boton])){
@@ -242,6 +252,134 @@
         }
 
     }
+
+/**
+ * 
+ * DUDAS 
+ * 1. Como ajustar el controlador para que cuando se recargue la vista no se vaya la vista 
+ * actual
+ * 
+ * 2. a que fichero hay que mandar los datos del js cuando hace clic en el corazon
+ * 
+ * 3. Se podría hacer un array asociativo con la key con la consulta
+ * y el value el array con los parametros para poder hacer las transacciones??
+ */
+
+    function generarVenta()
+    {
+        
+        try{
+            /**
+             * Se genera una nueva linea en la tabla de venta
+             */
+            $user = $_SESSION["usuario"];
+            $fecha = date ('Y-m-d', time());
+            $codigo = $_REQUEST['codigo'];
+            $cantidad = (int)$_REQUEST['nProductos'];
+            $precioTotal = (float)$_REQUEST['precio'] * $cantidad;
+            $stockFinal = (int)$_REQUEST['stock'] - $cantidad;
+
+            $con= new PDO("mysql:host=".IP.";dbname=".BBDD, USER, PASS);
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $preparada=$con->prepare("insert into venta values(idVenta,?,?,?,?,?)");
+
+            $con->beginTransaction();  
+            $arrayInsert=array($user, $fecha, $codigo, $cantidad, $precioTotal);
+            $preparada->execute($arrayInsert);
+            /**
+             * Se actualiza el stock del producto 
+             */
+            $preparada=$con->prepare("
+            UPDATE productos SET stock = ? WHERE codigoProducto = ?;
+            ");
+            
+            $arrayUpdate=array($stockFinal, $codigo);
+            $preparada->execute($arrayUpdate);
+
+            $con->commit();
+            $preparada->closeCursor();
+    
+        }
+        catch(PDOException $e)
+        {
+            $con->rollBack();
+            $numError = $e->getCode();
+    
+            // Si no existe la tabla... (nº error = 1146)
+            if($numError == 1146)
+            {
+                echo "<p>La tabla no existe.</p>";
+            }
+            
+            // Error al no reconocer la BBDD
+            if($numError == 1049)
+            {
+                echo "<p>No se reconoce la BBDD.</p>";
+            }
+            // Error al conectar con el servidor...
+            else if($numError == 2002)
+            {
+                echo "<p>Error al conectar con el servidor.</p>";
+            }
+            // Error de autenticación...
+            else if($numError == 1045)
+            {
+                echo "<p>Error en la autenticación.</p>";
+            }
+        }finally
+        {
+            unset($con);
+        }    
+    }
+    
+
+function addDeseo()
+{
+    if(isset($_POST['codigo']))
+    {
+        session_start();
+        $codigo = $_POST['codigo'];
+        $usuario = $_SESSION['usuario'];
+
+        if(!isset($_COOKIE[$usuario]))
+        {
+            setcookie($usuario.'[0]',$codigo, time()+31536000, "/" );
+            //setcookie('visitado['.$key.']',$value, time()+31536000, "/");
+            $prueba =0;
+            echo $prueba;
+        }else
+        {
+            $arrayDeseos=$_COOKIE[$usuario];
+            array_unshift($arrayDeseos, $codigo);
+
+            foreach ($arrayDeseos as $key => $value) {
+                setcookie($usuario.'['.$key.']',$value, time()+31536000, "/" );
+            }
+
+        }
+    }
+}
+
+function deleteDeseo()
+{
+    if(isset($_POST['codigo']))
+    {
+        session_start();
+        $codigo = $_POST['codigo'];
+        $usuario = $_SESSION['usuario'];
+        $arrayDeseos=$_COOKIE[$usuario];
+        if(in_array($codigo, $arrayDeseos))
+        {
+            foreach ($arrayDeseos as $key => $value) {
+                if($codigo==$value)
+                {
+                    setcookie($usuario.'['.$key.']',$value, time()-31536000, "/" );
+                }
+            }
+        }
+    }
+}
 
     
 

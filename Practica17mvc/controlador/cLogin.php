@@ -28,8 +28,7 @@ if(isset($_POST['crearCuenta']))
                 $_SESSION['user']=$usuario->usuario;
                 $_SESSION['nombre']=$usuario->nombre;
                 $_SESSION['perfil']=$usuario->perfil;
-                $paginas = UsuarioDAO::paginasUsuario($_SESSION['perfil']);
-                $_SESSION['paginas']=$paginas;
+                
                 if(isset($_REQUEST['recordarme']))
                 {
                     recuerdame();
@@ -57,9 +56,9 @@ if(isset($_POST['crearCuenta']))
     exit();
 }elseif(isset($_POST['verProductos']))
 {
-    $_SESSION["pagina"] = "verProductos";
-    header("Location: index.php");
-    exit();
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
 }else
 {
     //que sea la primera vez que se entra en login

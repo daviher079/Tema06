@@ -39,13 +39,10 @@ if(isset($_SESSION['codigoProducto']))
            }
        }
     }
-
 }
 
 ?>
 
-<body>
-    
     <main class="mainProducto">
             <?php
             $producto = ProductoDAO::buscaById($_SESSION['codigoProducto']);

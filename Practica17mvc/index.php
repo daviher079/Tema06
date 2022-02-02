@@ -24,8 +24,6 @@
             exit();
         }
         
-        
-        
     }
 
     //Si el usuario entra por primera vez

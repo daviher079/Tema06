@@ -33,40 +33,30 @@ elseif(isset($_POST['modificarPerfil']))
     if(validarNombreComp($boton)==true && validarMail($boton) == true && validarFecha($boton) ==true && validarPass($boton)==true)
     {
         
-            $con= new PDO("mysql:host=".IP.";dbname=".BBDD, USER, PASS);
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $preparada=$con->prepare("update usuarios 
-                    set clave = ?, 
-                    nombre = ?, 
-                    correo = ?, 
-                    fechaNacimiento = ?,
-                    perfil = ? 
-                    WHERE usuario = ?");
-            $con->beginTransaction();
 
-            $user=$_REQUEST['user'];
-            $nCompleto=$_REQUEST['nCompleto'];
-            $_SESSION['nombre']=$nCompleto;
-            $cElectronico=$_REQUEST['correo'];
-            $fecha=$_REQUEST['fecha'];
-            $pass=$_REQUEST['pass'];
-            $perfil=$_SESSION['perfil'];
+        $user=$_REQUEST['user'];
+        $encrip = sha1($_REQUEST['pass']);
+        $nCompleto=$_REQUEST['nCompleto'];
+        $cElectronico=$_REQUEST['correo'];
+        $fecha=$_REQUEST['fecha'];
+        $perfil=$_SESSION['perfil'];
+        $_SESSION['nombre']=$nCompleto;
+        $usuarioAct = new Usuario($user, $nCompleto, $encrip, $cElectronico, $fecha, $perfil);
 
-            $arrayParametros=array($pass, $nCompleto, $cElectronico, $fecha, $perfil, $user);
-            $preparada->execute($arrayParametros);    
+        if(UsuarioDAO::update($usuarioAct)!=0)
+        {
+            $_SESSION['pagina']='perfil';
+            header('Location: index.php');
+        }
 
-            $con->commit();
-            $preparada->closeCursor();
-        
-        
 
-        $bandera=true;
+       
+    }else
+    {
+        $_SESSION['vista']= $vistas['perfil'];
+        require_once $vistas['layout'];
     }   
-    else{
-        
-        $bandera = false;
-    } 
+   
 
 
 
@@ -86,9 +76,9 @@ elseif(isset($_POST['modificarPerfil']))
 
 }elseif(isset($_POST['verProductos']))
 {
-    $_SESSION["pagina"] = "verProductos";
-    header("Location: index.php");
-    exit();
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
 }else
 {
 

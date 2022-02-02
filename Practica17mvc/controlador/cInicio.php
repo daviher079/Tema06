@@ -13,7 +13,6 @@ if(isset($_POST['login']))
     {
         setcookie('recuerdame[0]',$_COOKIE['recuerdame'][0], time()-31536000, "/" );
         setcookie('recuerdame[1]',$_COOKIE['recuerdame'][1], time()-31536000, "/" );
-
     } 
 
     header("Location: index.php");
@@ -26,15 +25,21 @@ if(isset($_POST['login']))
     exit();
 }elseif(isset($_POST['producto']))
 {
-    $_SESSION["pagina"] = "comprarProducto";
+    $_SESSION["pagina"] = "cProducto";
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
     
 }elseif(isset($_POST['verProductos']))
 {
-    $_SESSION["pagina"] = "verProductos";
-    header("Location: index.php");
-    exit();
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+}elseif(isset($_POST['listaDeseos']))
+{
+    
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
 }
 
 crearBD();

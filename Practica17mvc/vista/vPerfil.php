@@ -31,9 +31,9 @@
 
             <section>
                 <label for="nCompleto">N. Completo</label>
-                <input type="text" name="nCompleto" placeholder="Nombre completo" id="nCompleto"  value="<?php recordarGenerico("nCompleto",$usuario->nombre)?>">
+                <input type="text" name="nCompleto" placeholder="Nombre completo" id="nCompleto"  value="<?php recordarGenericoMod("nCompleto",$usuario->nombre,'modificarPerfil')?>">
                 <?php
-                    if(isset($_REQUEST['modificarPerfil']) && expresionGenerico(PATRONNOMBRECOMPLETO, $usuario->nombre)==false)
+                    if(isset($_REQUEST['modificarPerfil']) && expresionGenerico(PATRONNOMBRECOMPLETO, $usuario->nombre, 'modificarPerfil')==false)
                     {
                         label("El nombre introducido no es valido. Deben tener un mínimo de 3 caracteres el nombre y los 2 apellidos<br>");
                     }
@@ -43,7 +43,7 @@
 
             <section>
                 <label for="correo">C. Electronico</label>
-                <input type="mail" name="correo" placeholder="Correo electronico" id="correo" value="<?php recordarGenerico("correo",$usuario->nombre)?>">
+                <input type="mail" name="correo" placeholder="Correo electronico" id="correo" value="<?php recordarGenericoMod("correo",$usuario->correo,'modificarPerfil')?>">
                 <?php
                     comprobarGenerico("correo", 'modificarPerfil');
                 ?>
@@ -51,7 +51,7 @@
 
             <section>
                 <label for="fecha">F. Nacimiento</label>
-                <input type="date" name="fecha" id="fecha" value="<?php recordarGenerico("fecha", $usuario->fechaNacimiento)?>">
+                <input type="date" name="fecha" id="fecha" value="<?php recordarGenericoMod("fecha", $usuario->fechaNacimiento,'modificarPerfil')?>">
                 <?php
                     comprobarGenerico("fecha", 'modificarPerfil');
                 ?>
@@ -69,7 +69,7 @@
                         {
                             label("Error no puede introducir la misma contraseña que ya tenía<br>");
                         }
-                        elseif(validarPass()==false)
+                        elseif(validarPass('modificarPerfil')==false)
                         {
                             label("Error. Asegurese de haber introducido la misma contraseña en los dos campos<br>");
                             $_REQUEST['pass']="";

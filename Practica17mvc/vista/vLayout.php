@@ -13,8 +13,6 @@
             $_SESSION['user']=$usuario->usuario;
             $_SESSION['nombre']=$usuario->nombre;
             $_SESSION['perfil']=$usuario->perfil;
-            $paginas = UsuarioDAO::paginasUsuario($_SESSION['perfil']);
-            $_SESSION['paginas']=$paginas;   
         }
     }
 ?>
@@ -51,12 +49,48 @@
                             <?php
                                 if (isset($_SESSION['validada'])) {
                             ?>
-                            <li>
-                                <input type="submit" value="Lista de Deseos" id="listaDeseos" name="listaDeseos">
-                            </li>
+                                <li>
+                                    <input type="submit" value="Lista de Deseos" id="listaDeseos" name="listaDeseos">
+                                </li>
 
                             <?php
                                 }
+                                if($_SESSION['perfil']=='ADM01'){
+
+                            ?>
+                            <li>
+                                <input type="submit" value="Insertar productos" id="insertarProductos" name="insertarProductos">
+                            </li>
+
+                            <li>
+                                <input type="submit" value="Modificar productos" id="modificarProducto" name="modificarProductos">
+                            </li>
+
+                            <li>
+                                <input type="submit" value="Mostrar ventas" id="mostrarVentas" name="mostrarVentas">
+                            </li>
+
+                            <li>
+                                <input type="submit" value="Mostrar albaranes" id="mostrarAlbaranes" name="mostrarAlbaranes">
+                            </li>
+                            <?php                            
+                                }
+                                if($_SESSION['perfil']=='MOD01'){
+                            ?>
+                                <li>
+                                    <input type="submit" value="Insertar productos" id="insertarProductos" name="insertarProductos">
+                                </li>
+                                
+                                <li>
+                                    <input type="submit" value="Mostrar ventas" id="mostrarVentas" name="mostrarVentas">
+                                </li>
+
+                                <li>
+                                    <input type="submit" value="Mostrar albaranes" id="mostrarAlbaranes" name="mostrarAlbaranes">
+                                </li>
+                            <?php                            
+                                }
+                                
                             ?>
                         </ul>
                     </nav>
