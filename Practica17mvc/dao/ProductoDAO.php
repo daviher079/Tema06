@@ -23,45 +23,6 @@ class ProductoDAO implements DAO
 
     }
 
-    /*public static function validaUser($user, $pass)
-    {
-        $sql = "select * from usuarios where usuario = ? and clave = ?";
-        $consulta = ConexionBD::ejecutaConsulta($sql, [$user, $pass]);
-        $usuario =null;
-
-            while($row = $consulta->fetchObject())
-            {
-                $usuario = new Usuario($row->usuario,
-                    $row->nombre, $row->clave, $row->correo, $row->fechaNacimiento, $row->perfil);
-                    
-            }
-
-        
-        return $usuario;
-    }
-
-    public static function buscarUser($user)
-    {
-        
-        $bandera =false;
-
-        $sql = "select usuario from usuarios;";
-
-        $consulta = ConexionBD::ejecutaConsulta($sql, [$user]);
-        
-        
-        while($row = $consulta->fetch())
-        {
-            $usuarioBD=$row['usuario'];
-            if($usuarioBD==$user)
-            {
-                $bandera=true;
-            }
-
-        }
-        return $bandera;
-    }*/
-
     //Busca por clave primaria
 
     public static function buscaById($id)

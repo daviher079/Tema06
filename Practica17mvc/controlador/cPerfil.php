@@ -76,9 +76,31 @@ elseif(isset($_POST['modificarPerfil']))
 
 }elseif(isset($_POST['verProductos']))
 {
+
     $_SESSION["pagina"] = "cProducto";
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
+
+}elseif(isset($_POST['listaDeseos']))
+{
+    
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
+}elseif (isset($_POST['insertarProductos'])) {
+
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
+}elseif(isset($_POST['modificarProductos']))
+{
+
+    $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
 }else
 {
 

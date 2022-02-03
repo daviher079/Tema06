@@ -473,6 +473,25 @@ form input[type='submit']
     color: #9c102c;
 }
 
+.mainModPerfil table td input[type='submit']
+{
+
+
+    text-decoration:none;
+    color:#d02b4d;
+    font-size:1.2em;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+
+}
+
+.mainModPerfil table td input[type='submit']:hover
+{
+    color: #9c102c;
+}
+
+
 .mainModPerfil form input[type="number"]
 {
     background-color: transparent;
@@ -500,8 +519,8 @@ aside h2
 .productos
 {
     padding: 25px;
-    display: flex;
-    flex-wrap: wrap;
+    /*display: flex;
+    flex-wrap: wrap;*/
     float: left;
     width: 70%;
 }
@@ -607,7 +626,7 @@ form section
   .allProductos
   {
       padding: 25px;
-      display: flex;
+      /*display: flex;
       flex-wrap: wrap;
-      float: left;
+      float: left;*/
   }

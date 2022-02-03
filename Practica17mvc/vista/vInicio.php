@@ -20,12 +20,11 @@
                                         color: #d02b4d'>". 
 
                                             
-                                            "<input type='submit' id ='producto' value='". $producto->descripcion."' name='producto'>".
-                                            "<input type='hidden' name='codigo' value='$producto->codigoProducto'>".
-                                            "</label>"
-                                        ."</form>".
-    
-                                    "</div>";
+                                        "<input type='submit' id ='producto' value='". $producto->descripcion."' name='producto'>".
+                                        "<input type='hidden' name='codigo' value='$producto->codigoProducto'>".
+                                        "</label>"
+                                    ."</div>"
+                                ."</form>";
                             }else
                             {
                                 echo 

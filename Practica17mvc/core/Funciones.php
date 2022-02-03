@@ -333,7 +333,47 @@
         }    
     }
     
+    function validarDescripcion($var, $boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
 
+    function validarPrecio($var, $boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+    function validarStock($var, $boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
 
     
 

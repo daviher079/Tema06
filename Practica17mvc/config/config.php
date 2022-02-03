@@ -45,7 +45,10 @@ $vistas =
     'comprarProducto' => 'vista/vComprarProducto.php',
     'finalizarCompra' => 'vista/vFinalizarCompra.php',
     'verProductos' => 'vista/vVerProductos.php',
-    'listaDeseos' => 'vista/vListaDeseos.php'
+    'listaDeseos' => 'vista/vListaDeseos.php',
+    'insertarProducto' => 'vista/vInsertarProducto.php',
+    'modificarProducto' => 'vista/vModificarProducto.php',
+    'modOneProducto' => 'vista/vModOneProducto.php'
 ];
 
 
