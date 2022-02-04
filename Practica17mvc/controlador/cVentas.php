@@ -1,10 +1,19 @@
 <?php
 
-if(isset($_POST['login']))
+if(isset($_POST['volver']))
 {
-    $_SESSION["pagina"] = "login";
-    header("Location: index.php");
+
+    $_SESSION['pagina']='inicio';
+    header('Location: index.php');
     exit();
+
+}
+elseif(isset($_POST['login']))
+{
+    $_SESSION['pagina']='login';
+    header('Location: index.php');
+    exit();
+   
 }else if(isset($_POST['logout']))
 {
     unset($_SESSION['validada']);
@@ -56,20 +65,18 @@ if(isset($_POST['login']))
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
 
-}elseif(isset($_POST['mostrarVentas']))
-{
-
-    $_SESSION["pagina"] = "cVentas";
-    $controlador=$controladores[$_SESSION['pagina']];
-    require_once $controlador;
-
 }else
 {
-    crearBD();
-    $_SESSION['vista'] =$vistas['inicio'];
-    require_once $vistas['layout'];
+    if(isset($_POST['modVenta']))
+    {
+        $_SESSION['vista']= $vistas['modVenta'];
+        require_once $vistas['layout'];
+    }else
+    {
+        $_SESSION['vista']= $vistas['verVentas'];
+        require_once $vistas['layout'];
 
-
+    }
 }
 
 

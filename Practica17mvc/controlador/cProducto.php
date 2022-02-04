@@ -164,6 +164,13 @@ elseif(isset($_POST['volver']))
         require_once $vistas['layout'];
     }
 
+}elseif(isset($_POST['mostrarVentas']))
+{
+
+    $_SESSION["pagina"] = "cVentas";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
 }else
 {
     
@@ -189,7 +196,6 @@ elseif(isset($_POST['volver']))
     }elseif($_SESSION['vista']==$vistas['insertarProducto'])
     {
 
-        
     
     if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
     {
@@ -291,6 +297,13 @@ elseif(isset($_POST['volver']))
                 require_once $vistas['layout'];
         }
 
+    }elseif(isset($_POST['mostrarVentas']))
+    {
+    
+        $_SESSION["pagina"] = "cVentas";
+        $controlador=$controladores[$_SESSION['pagina']];
+        require_once $controlador;
+    
     }
 
     else

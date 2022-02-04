@@ -36,7 +36,8 @@ $controladores =
     'registro' => 'controlador/cRegistro.php',
     'perfil' => 'controlador/cPerfil.php',
     'finalizarCompra' => 'controlador/cFinalizarCompra.php',
-    'cProducto' => 'controlador/cProducto.php'
+    'cProducto' => 'controlador/cProducto.php',
+    'cVentas' => 'controlador/cVentas.php'
 ];
 
 $vistas = 
@@ -52,7 +53,9 @@ $vistas =
     'listaDeseos' => 'vista/vListaDeseos.php',
     'insertarProducto' => 'vista/vInsertarProducto.php',
     'modificarProducto' => 'vista/vModificarProducto.php',
-    'modOneProducto' => 'vista/vModOneProducto.php'
+    'modOneProducto' => 'vista/vModOneProducto.php',
+    'verVentas' => 'vista/vVerVentas.php',
+    'modVenta' => 'vista/vModVenta.php'
 ];
 
 

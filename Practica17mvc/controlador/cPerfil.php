@@ -56,9 +56,6 @@ elseif(isset($_POST['modificarPerfil']))
         require_once $vistas['layout'];
     }   
    
-
-
-
    
 }elseif(isset($_GET['mostrar']))
 {
@@ -97,6 +94,13 @@ elseif(isset($_POST['modificarPerfil']))
 {
 
     $_SESSION["pagina"] = "cProducto";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
+}elseif(isset($_POST['mostrarVentas']))
+{
+
+    $_SESSION["pagina"] = "cVentas";
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
 

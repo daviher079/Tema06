@@ -14,8 +14,9 @@ class VentaDAO implements DAO
         
         while($row = $consulta->fetchObject())
         {
-            $venta = new Venta($row->codigoVenta,
-                $row->UsuarioNickV, $row->fechaCompra, $row->codigoProductoV, $row->cantidad, $row->precioTotal);
+            $venta = new Venta($row->idVenta,
+                $row->usuarioNickV, $row->fechaCompra,
+                $row->codigoProductoV, $row->cantidad, $row->precioTotal);
                 $registros[$cont]=$venta;
                 $cont++;
 
