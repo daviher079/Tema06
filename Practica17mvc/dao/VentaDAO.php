@@ -30,35 +30,34 @@ class VentaDAO implements DAO
     //Busca por clave primaria
     public static function buscaById($id)
     {
-       /* $sql = "select * from usuarios where usuario = ?";
+        $sql = "select * from venta where idVenta = ?";
         $consulta = ConexionBD::ejecutaConsulta($sql, [$id]);
-        $usuario =null;
+        $venta =null;
 
         while($row = $consulta->fetchObject())
         {
-            $usuario = new Usuario($row->usuario, $row->nombre, $row->clave, $row->correo, $row->fechaNacimiento, $row->perfil);  
+            $venta = new Venta($row->idVenta, $row->usuarioNickV, $row->fechaCompra, $row->codigoProductoV, $row->cantidad, $row->precioTotal);  
         }
 
-        return $usuario;*/
+        return $venta;
     }
 
     //modifica o actualiza
     public static function update($objeto)
     {
-        /*$consulta = 0;
-        $sql="update usuarios 
-            set clave = ?, 
-            nombre = ?, 
-            correo = ?, 
-            fechaNacimiento = ?,
-            perfil = ? 
-            WHERE usuario = ?";
+        $sql="update venta 
+        set usuarioNickV = ?, 
+        fechaCompra = ?, 
+        codigoProductoV = ?,
+        cantidad = ?,  
+        precioTotal = ?
+        WHERE idVenta = ?";
             
-        $parametros = array($objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil, $objeto->usuario);
+        $parametros = array($objeto->UsuarioNickV, $objeto->fechaCompra, $objeto->codigoProductoV, $objeto->cantidad, $objeto->precioTotal, $objeto->codigoVenta);
 
         $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
     
-        return $consulta;*/
+        return $consulta;
     }
     
     //crea o inserta 

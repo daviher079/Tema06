@@ -145,6 +145,21 @@
         return $bandera;
     }
 
+    function validarCantidadModVenta($boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['cantidadNueva']) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+
     function validarPass($boton)
     {
         $bandera=false;
@@ -164,7 +179,6 @@
         }
         return $bandera;
     }
-
 
     function validarCompra($cantidad, $stockFinal)
     {
@@ -252,7 +266,6 @@
         }
 
     }
-
     
     function validarDescripcionModProdu()
     {
@@ -296,7 +309,6 @@
         return $bandera;
     }
 
-
     function validarDescripcionInsertProdu()
     {
         $bandera=true;
@@ -332,8 +344,7 @@
         }    
     }
 
-
- function comprobarCodigoControlador()
+    function comprobarCodigoControlador()
     {
         $bandera=true;
         if(!empty($_REQUEST['codigo']) && isset($_REQUEST['insertarProducto']))
@@ -359,8 +370,6 @@
         return $bandera;
     }
     
-
-
     function validarPrecioInsertProdu()
     {
         $bandera=true;

@@ -68,6 +68,18 @@ class ProductoDAO implements DAO
 
     }
     
+
+    public static function updateStockModVenta($objeto, $cantidad)
+    {
+        
+        $sql = "update productos SET stock = ? where codigoProducto = ?;";
+        $parametros = array($cantidad, $objeto->codigoProducto);
+        ConexionBD::ejecutaTransaccion($sql, $parametros);
+    
+
+    }
+
+
     //crea o inserta 
     public static function save($objeto)
     {

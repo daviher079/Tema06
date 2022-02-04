@@ -36,21 +36,24 @@ elseif(isset($_POST['volver']))
     header('Location: index.php');
     exit();
 
-}elseif(isset($_POST['login']))
+}
+elseif(isset($_POST['login']))
 {
 
     $_SESSION["pagina"] = "login";
     header("Location: index.php");
     exit();
 
-}else if(isset($_POST['perfil']))
+}
+else if(isset($_POST['perfil']))
 {
 
     $_SESSION["pagina"] = "perfil";
     header("Location: index.php");
     exit();
 
-}else if(isset($_POST['logout']))
+}
+else if(isset($_POST['logout']))
 {
 
     unset($_SESSION['validada']);
@@ -65,7 +68,8 @@ elseif(isset($_POST['volver']))
     header("Location: index.php");
     exit();
     
-}elseif(isset($_POST['producto']))
+}
+elseif(isset($_POST['producto']))
 {
 
     if(isset($_POST['codigo']))
@@ -77,19 +81,22 @@ elseif(isset($_POST['volver']))
     $_SESSION['vista'] = $vistas['comprarProducto'];
     require_once $vistas['layout'];
     
-}elseif(isset($_POST['listaDeseos']))
+}
+elseif(isset($_POST['listaDeseos']))
 {
     
     $_SESSION['vista'] = $vistas['listaDeseos'];
     require_once $vistas['layout'];
 
-}elseif(isset($_POST['verProductos']))
+}
+elseif(isset($_POST['verProductos']))
 {
 
     $_SESSION['vista'] = $vistas['verProductos']; 
     require_once $vistas['layout'];
 
-}elseif (isset($_POST['insertarProductos'])) {
+}
+elseif (isset($_POST['insertarProductos'])) {
 
     if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
     {
@@ -119,7 +126,8 @@ elseif(isset($_POST['volver']))
     }
 
 
-}elseif(isset($_POST['modificarProductos']))
+}
+elseif(isset($_POST['modificarProductos']))
 {
     if(isset($_POST['modProducto']))
     {

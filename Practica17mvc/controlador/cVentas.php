@@ -69,12 +69,132 @@ elseif(isset($_POST['login']))
 {
     if(isset($_POST['modVenta']))
     {
-        $_SESSION['vista']= $vistas['modVenta'];
-        require_once $vistas['layout'];
+        if(isset($_POST['codigo']))
+        {
+            $_SESSION['codigoVenta']=$_POST['codigo'];
+
+            if(validarFecha('modificarVenta')==true && validarCantidadModVenta('modificarVenta')==true)
+            {
+                $idVenta = (int) $_REQUEST['idVenta'];
+                $usuario = $_REQUEST['usuario'];
+                $fecha = $_REQUEST['fecha'];
+                $codProducto = $_REQUEST['codigoProducto'];
+                $cantidadAntigua = (int)$_REQUEST['cantidadAntigua'];
+                $cantidadNueva = (int) $_REQUEST['cantidadNueva'];
+                $producto = ProductoDAO::buscaById($codProducto);
+                $precioProducto = $producto->precio;
+                $stock= $producto->stock;
+                $precioFinal = (float) $precioProducto * $cantidadNueva;
+                $venta= new Venta($idVenta, $usuario, $fecha, $codProducto, $cantidadNueva, $precioFinal); 
+                
+                VentaDAO::update($venta);
+
+                
+                $array = recuperarPrecioStockProducto($_REQUEST['codigoProducto']);
+                
+                $stockFinal=0;
+
+                if($cantidadNueva>$cantidadAntigua)
+                {
+                    $stockFinal = $stock - ($cantidadNueva - $cantidadAntigua);
+                    ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                    $_SESSION['vista']= $vistas['verVentas'];
+                    require_once $vistas['layout'];
+    
+                }elseif($cantidadNueva<$cantidadAntigua)
+                {
+                    $stockFinal = $stock + ($cantidadAntigua - $cantidadNueva);
+                    ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                    $_SESSION['vista']= $vistas['verVentas'];
+                    require_once $vistas['layout'];
+                }else
+                {
+                    $stockFinal = $stock;
+                    ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                    $_SESSION['vista']= $vistas['verVentas'];
+                    require_once $vistas['layout'];
+                }
+            }   
+            else
+            {
+                $_SESSION['vista']= $vistas['modVenta'];
+                require_once $vistas['layout'];
+            }
+
+        }else
+        {
+            $_SESSION['vista']= $vistas['verVentas'];
+            require_once $vistas['layout'];
+        }
+
     }else
     {
-        $_SESSION['vista']= $vistas['verVentas'];
-        require_once $vistas['layout'];
+
+        if($_SESSION['vista']==$vistas['modVenta'])
+        {
+        
+            if(isset($_SESSION['codigoVenta']))
+            {
+
+                if(validarFecha('modificarVenta')==true && validarCantidadModVenta('modificarVenta')==true)
+                {
+                    $idVenta = (int) $_REQUEST['idVenta'];
+                    $usuario = $_REQUEST['usuario'];
+                    $fecha = $_REQUEST['fecha'];
+                    $codProducto = $_REQUEST['codigoProducto'];
+                    $cantidadAntigua = (int)$_REQUEST['cantidadAntigua'];
+                    $cantidadNueva = (int) $_REQUEST['cantidadNueva'];
+                    $producto = ProductoDAO::buscaById($codProducto);
+                    $precioProducto = $producto->precio;
+                    $stock= $producto->stock;
+                    $precioFinal = (float) $precioProducto * $cantidadNueva;
+                    $venta= new Venta($idVenta, $usuario, $fecha, $codProducto, $cantidadNueva, $precioFinal); 
+                    
+                    VentaDAO::update($venta);
+
+                    
+                    
+                    $stockFinal=0;
+
+                    if($cantidadNueva>$cantidadAntigua)
+                    {
+                        $stockFinal = $stock - ($cantidadNueva - $cantidadAntigua);
+                        ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                        $_SESSION['vista']= $vistas['verVentas'];
+                        require_once $vistas['layout'];
+        
+                    }elseif($cantidadNueva<$cantidadAntigua)
+                    {
+                        $stockFinal = $stock + ($cantidadAntigua - $cantidadNueva);
+                        ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                        $_SESSION['vista']= $vistas['verVentas'];
+                        require_once $vistas['layout'];
+                    }else
+                    {
+                        $stockFinal = $stock;
+                        ProductoDAO::updateStockModVenta($producto, $stockFinal);
+                        $_SESSION['vista']= $vistas['verVentas'];
+                        require_once $vistas['layout'];
+                    }
+                }   
+                else
+                {
+                    $_SESSION['vista']= $vistas['modVenta'];
+                    require_once $vistas['layout'];
+                }
+
+            }else
+            {
+                $_SESSION['vista']= $vistas['verVentas'];
+                require_once $vistas['layout'];
+            }
+
+        }else
+        {
+            $_SESSION['vista']= $vistas['verVentas'];
+            require_once $vistas['layout'];
+
+        }
 
     }
 }
