@@ -1,12 +1,11 @@
 <?php
 
-class VentaDAO implements DAO
+class AlbaranDAO implements DAO
 {
-
 
     public static function findAll()
     {
-        $sql = "select * from venta";
+        $sql = "select * from albaran";
 
         $consulta = ConexionBD::ejecutaConsulta($sql, []);
         $cont =0;
@@ -14,9 +13,9 @@ class VentaDAO implements DAO
         
         while($row = $consulta->fetchObject())
         {
-            $venta = new Venta($row->codigoVenta,
-                $row->UsuarioNickV, $row->fechaCompra, $row->codigoProductoV, $row->cantidad, $row->precioTotal);
-                $registros[$cont]=$venta;
+            $albaran = new Albaran($row->codigoAlbaran,
+                $row->fechaAlbaran, $row->codigoProducto, $row->cantidad, $row->usuarioNickA);
+                $registros[$cont]=$albaran;
                 $cont++;
 
         }
@@ -24,12 +23,14 @@ class VentaDAO implements DAO
 
     }
 
+
+
     
 
     //Busca por clave primaria
     public static function buscaById($id)
     {
-       /* $sql = "select * from usuarios where usuario = ?";
+        /*$sql = "select * from usuarios where usuario = ?";
         $consulta = ConexionBD::ejecutaConsulta($sql, [$id]);
         $usuario =null;
 
@@ -64,13 +65,20 @@ class VentaDAO implements DAO
     public static function save($objeto)
     {
         $consulta = 0;
-        $sql = "insert into venta values(idVenta,?,?,?,?,?)";
-        $parametros = array($objeto->UsuarioNickV, $objeto->fechaCompra, $objeto->codigoProductoV, $objeto->cantidad, $objeto->precioTotal);
+        $sql = "insert into albaran values(idAlbaran,?,?,?,?)";
+        $parametros = array($objeto->fechaAlbaran, $objeto->codigoProducto, $objeto->cantidad, $objeto->usuarioNickA);
 
         $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
 
         return $consulta;
     }
+
+        /***
+    
+    private $codigoProducto;
+    private $cantidad;
+    private $usuarioNickA;
+     */
 
     //borrar
     public static function delete($objeto)

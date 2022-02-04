@@ -253,90 +253,118 @@
 
     }
 
-/**
- * 
- * DUDAS 
- * 1. Como ajustar el controlador para que cuando se recargue la vista no se vaya la vista 
- * actual
- * 
- * 2. a que fichero hay que mandar los datos del js cuando hace clic en el corazon
- * 
- * 3. Se podría hacer un array asociativo con la key con la consulta
- * y el value el array con los parametros para poder hacer las transacciones??
- */
+    
+    function validarDescripcionModProdu()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['descripcion']) && isset($_REQUEST['modificarProducto']))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
 
-    function generarVenta()
+    function validarPrecioModProdu()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['precio']) && isset($_REQUEST['modificarProducto']))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+    function validarStockModProdu()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['stock']) && isset($_REQUEST['modificarProducto']))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+
+    function validarDescripcionInsertProdu()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['descripcion']) && isset($_REQUEST['insertarProducto']))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+    function comprobarCodigo()
     {
         
-        try{
-            /**
-             * Se genera una nueva linea en la tabla de venta
-             */
-            $user = $_SESSION["usuario"];
-            $fecha = date ('Y-m-d', time());
-            $codigo = $_REQUEST['codigo'];
-            $cantidad = (int)$_REQUEST['nProductos'];
-            $precioTotal = (float)$_REQUEST['precio'] * $cantidad;
-            $stockFinal = (int)$_REQUEST['stock'] - $cantidad;
+        if(!empty($_REQUEST['codigo']) && isset($_REQUEST['insertarProducto']))
+        {
+            $productoCompruebaCodigo = ProductoDAO::buscaById($_REQUEST['codigo']);
 
-            $con= new PDO("mysql:host=".IP.";dbname=".BBDD, USER, PASS);
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            if($productoCompruebaCodigo->codigoProducto==$_REQUEST['codigo'])
+            {
+                label("Error. Código existente");    
 
-            $preparada=$con->prepare("insert into venta values(idVenta,?,?,?,?,?)");
+            }
 
-            $con->beginTransaction();  
-            $arrayInsert=array($user, $fecha, $codigo, $cantidad, $precioTotal);
-            $preparada->execute($arrayInsert);
-            /**
-             * Se actualiza el stock del producto 
-             */
-            $preparada=$con->prepare("
-                UPDATE productos SET stock = stock - ? WHERE codigoProducto = ?;
-            ");
-            
-            $arrayUpdate=array($stockFinal, $codigo);
-            $preparada->execute($arrayUpdate);
-
-            $con->commit();
-            $preparada->closeCursor();
-    
         }
-        catch(PDOException $e)
-        {
-            $con->rollBack();
-            $numError = $e->getCode();
-    
-            // Si no existe la tabla... (nº error = 1146)
-            if($numError == 1146)
-            {
-                echo "<p>La tabla no existe.</p>";
-            }
+
+        if(empty($_REQUEST['codigo']) && isset($_REQUEST['insertarProducto'])){
             
-            // Error al no reconocer la BBDD
-            if($numError == 1049)
-            {
-                echo "<p>No se reconoce la BBDD.</p>";
-            }
-            // Error al conectar con el servidor...
-            else if($numError == 2002)
-            {
-                echo "<p>Error al conectar con el servidor.</p>";
-            }
-            // Error de autenticación...
-            else if($numError == 1045)
-            {
-                echo "<p>Error en la autenticación.</p>";
-            }
-        }finally
-        {
-            unset($con);
+            label("Debe haber un campo codigo");
         }    
     }
+
+
+ function comprobarCodigoControlador()
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['codigo']) && isset($_REQUEST['insertarProducto']))
+        {
+            $productoCompruebaCodigo = ProductoDAO::buscaById($_REQUEST['codigo']);
+
+            if($productoCompruebaCodigo->codigoProducto!=$_REQUEST['codigo'])
+            {
+                $bandera=true;    
+
+            }else
+            {
+                $bandera=false;
+            }
+
+        }
+        else
+        {
+            $bandera=false;
+        }
+
+        
+        return $bandera;
+    }
     
-    function validarDescripcion($var, $boton)
+
+
+    function validarPrecioInsertProdu()
     {
         $bandera=true;
-        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
+        if(!empty($_REQUEST['precio']) && isset($_REQUEST['insertarProducto']))
         {
             $bandera=true;    
         }
@@ -347,24 +375,10 @@
         return $bandera;
     }
 
-    function validarPrecio($var, $boton)
+    function validarStockInsertProdu()
     {
         $bandera=true;
-        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
-        {
-            $bandera=true;    
-        }
-        else
-        {
-            $bandera=false;
-        }
-        return $bandera;
-    }
-
-    function validarStock($var, $boton)
-    {
-        $bandera=true;
-        if(!empty($_REQUEST[$var]) && isset($_REQUEST[$boton]))
+        if(!empty($_REQUEST['stock']) && isset($_REQUEST['insertarProducto']))
         {
             $bandera=true;    
         }

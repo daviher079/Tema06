@@ -7,7 +7,7 @@
             <label for="codigo">C. Producto</label>
             <input type="text" name="codigo" id="codigo" value="<?php recordarGenerico("codigo", 'insertarProducto') ?>">
             <?php
-                comprobarGenerico("codigo",'insertarProducto');
+                comprobarCodigo()
             ?>
         </section>
 

@@ -21,8 +21,12 @@ require "./modelo/Conexion.php";
 require "./dao/DAO.php";
 require "./modelo/Usuario.php";
 require "./modelo/Producto.php";
+require "./modelo/Venta.php";
+require "./modelo/Albaran.php";
 require "./dao/UsuarioDAO.php";
 require "./dao/ProductoDAO.php";
+require "./dao/VentaDAO.php";
+require "./dao/AlbaranDAO.php";
 
 
 $controladores = 

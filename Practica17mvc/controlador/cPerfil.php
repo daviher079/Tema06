@@ -42,12 +42,11 @@ elseif(isset($_POST['modificarPerfil']))
         $perfil=$_SESSION['perfil'];
         $_SESSION['nombre']=$nCompleto;
         $usuarioAct = new Usuario($user, $nCompleto, $encrip, $cElectronico, $fecha, $perfil);
+        UsuarioDAO::update($usuarioAct);
 
-        if(UsuarioDAO::update($usuarioAct)!=0)
-        {
-            $_SESSION['pagina']='perfil';
-            header('Location: index.php');
-        }
+        $_SESSION['pagina']='perfil';
+        header('Location: index.php');
+
 
 
        

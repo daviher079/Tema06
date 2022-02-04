@@ -47,24 +47,41 @@ class ProductoDAO implements DAO
     //modifica o actualiza
     public static function update($objeto)
     {
-        echo "update ";
+        $sql="update productos 
+        set descripcion = ?, 
+        precio = ?, 
+        stock = ? 
+        WHERE codigoProducto = ?";
+
+        $parametros= array($objeto->descripcion, $objeto->precio, $objeto->precio, $objeto->codigoProducto);
+        
+        ConexionBD::ejecutaTransaccion($sql, $parametros);
+
+    }
+
+    public static function updateStock($objeto, $cantidad)
+    {
+        
+        $sql = "update productos SET stock = stock - ? where codigoProducto = ?;";
+        $parametros = array($cantidad, $objeto->codigoProducto);
+        ConexionBD::ejecutaTransaccion($sql, $parametros);
+
     }
     
     //crea o inserta 
     public static function save($objeto)
     {
-        $consulta = 0;
-        $sql = "insert into usuarios values(?,?,?,?,?,?)";
-        $parametros = array($objeto->usuario, $objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil);
+        $sql = "insert into productos values(?,?,?,?,?,?)";
+        $parametros= array($objeto->codigoProducto, $objeto->descripcion, $objeto->precio, $objeto->stock, $objeto->imagenAlta, $objeto->imagenBaja);
         $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
 
-        return $consulta;
     }
 
     //borrar
     public static function delete($objeto)
     {
-        echo "delete ";
+        
+        
     }
         
 

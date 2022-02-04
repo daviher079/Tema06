@@ -26,18 +26,17 @@ if(isset($_POST['volver']))
         $perfil = "USR01";
         
         $usuarioNuevo = new Usuario($user, $nCompleto, $encrip, $correo, $fecha, $perfil);
+        UsuarioDAO::save($usuarioNuevo);
+        
+        $_SESSION['validada']=true;
+        $_SESSION['user']=$user;
+        $_SESSION['nombre']=$nCompleto;
+        $_SESSION['perfil']=$perfil;
+        
+        $_SESSION['pagina']='inicio';
+        header('Location: index.php');
 
-        if(UsuarioDAO::save($usuarioNuevo)!=0)
-        {
-            $_SESSION['validada']=true;
-            $_SESSION['user']=$user;
-            $_SESSION['nombre']=$nCompleto;
-            $_SESSION['perfil']=$perfil;
-            
-            $_SESSION['pagina']='inicio';
-            header('Location: index.php');
-
-        }
+    
     
     }else
     {

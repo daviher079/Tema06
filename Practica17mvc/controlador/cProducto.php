@@ -26,7 +26,7 @@ if(isset($_POST['comprarProducto']))
         }else
         {
             $_SESSION['vista'] = $vistas['comprarProducto'];
-        require_once $vistas['layout'];
+            require_once $vistas['layout'];
         }
 }
 elseif(isset($_POST['volver']))
@@ -91,8 +91,33 @@ elseif(isset($_POST['volver']))
 
 }elseif (isset($_POST['insertarProductos'])) {
 
-    $_SESSION['vista'] = $vistas['insertarProducto'];
-    require_once $vistas['layout'];
+    if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
+    {
+            $codigo = $_REQUEST['codigo'];
+            $descripcion = $_REQUEST['descripcion'];
+            $precio = (float)$_REQUEST['precio']; 
+            $stock = (int)$_REQUEST['stock'];
+            $imagenAlta="";
+            $imagenBaja="";
+
+            $fecha = date ('Y-m-d', time());
+            $cantidad = (int)$_REQUEST['stock'];
+            $usuario= $_SESSION['user'];
+
+            $insertarProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
+            $insertarAlbaran = new Albaran(0, $fecha, $codigo, $stock, $usuario);    
+            ProductoDAO::save($insertarProducto);
+            AlbaranDAO::save($insertarAlbaran);
+            $_SESSION['pagina']='inicio';
+            header('Location: index.php');
+            exit();
+
+    }else
+    {
+        $_SESSION['vista'] = $vistas['insertarProducto'];
+        require_once $vistas['layout'];
+    }
+
 
 }elseif(isset($_POST['modificarProductos']))
 {
@@ -104,36 +129,34 @@ elseif(isset($_POST['volver']))
         {
             $_SESSION['codigoProducto']=$_POST['codigo'];
 
-        }
-
-        $boton ='modificarProducto';
-
-        if(validarNombreComp($boton)==true && validarMail($boton) == true && validarFecha($boton) ==true && validarPass($boton)==true)
-        {
-            
-
-            $user=$_REQUEST['user'];
-            $encrip = sha1($_REQUEST['pass']);
-            $nCompleto=$_REQUEST['nCompleto'];
-            $cElectronico=$_REQUEST['correo'];
-            $fecha=$_REQUEST['fecha'];
-            $perfil=$_SESSION['perfil'];
-            $_SESSION['nombre']=$nCompleto;
-            $usuarioAct = new Usuario($user, $nCompleto, $encrip, $cElectronico, $fecha, $perfil);
-
-            if(UsuarioDAO::update($usuarioAct)!=0)
+            if(validarDescripcionModProdu()==true && validarPrecioModProdu()==true && validarStockModProdu() ==true)
             {
-                $_SESSION['pagina']='perfil';
-                header('Location: index.php');
-            }
+
+                $codigo = $_REQUEST['codigo'];
+                $descripcion = $_REQUEST['descripcion'];
+                $precio = $_REQUEST['precio'];
+                $stock = $_REQUEST['stock'];
+                $imagenAlta = $_REQUEST['imagenAlta'];
+                $imagenBaja = $_REQUEST['imagenBaja'];
+                $actualizaProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
+                
+                ProductoDAO::update($actualizaProducto);
+
+                $_SESSION['vista'] = $vistas['modificarProducto'];
+                require_once $vistas['layout'];
 
 
-        
+            }else
+            {
+                $_SESSION['vista'] = $vistas['modOneProducto'];
+                require_once $vistas['layout'];
+            }   
         }else
         {
-            $_SESSION['vista'] = $vistas['modOneProducto'];
-            require_once $vistas['layout'];
-        }   
+            $_SESSION['vista'] = $vistas['modificarProducto'];
+                require_once $vistas['layout'];
+        }
+        
 
     }else
     {
@@ -166,97 +189,108 @@ elseif(isset($_POST['volver']))
     }elseif($_SESSION['vista']==$vistas['insertarProducto'])
     {
 
+        
+    
+    if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
+    {
+            $codigo = $_REQUEST['codigo'];
+            $descripcion = $_REQUEST['descripcion'];
+            $precio = (float)$_REQUEST['precio']; 
+            $stock = (int)$_REQUEST['stock'];
+            $imagenAlta="";
+            $imagenBaja="";
+
+            $fecha = date ('Y-m-d', time());
+            $cantidad = (int)$_REQUEST['stock'];
+            $usuario= $_SESSION['user'];
+
+            $insertarProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
+            $insertarAlbaran = new Albaran(0, $fecha, $codigo, $stock, $usuario);    
+            ProductoDAO::save($insertarProducto);
+            AlbaranDAO::save($insertarAlbaran);
+            $_SESSION['pagina']='inicio';
+            header('Location: index.php');
+            exit();
+
+
+
+    }else
+    {
         $_SESSION['vista'] = $vistas['insertarProducto'];
         require_once $vistas['layout'];
+    }
     
     }elseif($_SESSION['vista']==$vistas['modificarProducto'])
     {
 
-        if(isset($_POST['modProducto']))
+        if(isset($_POST['codigo']))
         {
-            //modOneProducto
-    
-            if(isset($_POST['codigo']))
-            {
-                $_SESSION['codigoProducto']=$_POST['codigo'];
-    
-            }
-    
-            $boton ='modificarProducto';
+            $_SESSION['codigoProducto']=$_POST['codigo'];
 
-            $codigo = $_REQUEST['codigo'];
-            $descripcion = $_REQUEST['descripcion'];
-            $precio = (float)$_REQUEST['precio'];
-            $stock = (int)$_REQUEST['stock'];
-    
-            if(validarDescripcion($descripcion, $boton)==true && validarPrecio($precio, $boton)==true && validarStock($stock, $boton) ==true)
+            if(validarDescripcionModProdu()==true && validarPrecioModProdu()==true && validarStockModProdu() ==true)
             {
+
+                $codigo = $_REQUEST['codigo'];
+                $descripcion = $_REQUEST['descripcion'];
+                $precio = $_REQUEST['precio'];
+                $stock = $_REQUEST['stock'];
+                $imagenAlta = $_REQUEST['imagenAlta'];
+                $imagenBaja = $_REQUEST['imagenBaja'];
+                $actualizaProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
                 
-    
-                $sql="update productos 
-                set descripcion = ?, 
-                precio = ?, 
-                stock = ? 
-                WHERE codigoProducto = ?";
-    
-                if(UsuarioDAO::update($usuarioAct)!=0)
-                {
-                    /*$_SESSION['pagina']='perfil';
-                    header('Location: index.php');*/
-                    $_SESSION['vista'] = $vistas['modificarProducto'];
-                    require_once $vistas['layout'];
-                }
-    
-    
-            
+                ProductoDAO::update($actualizaProducto);
+
+                $_SESSION['vista'] = $vistas['modificarProducto'];
+                require_once $vistas['layout'];
+
+
             }else
             {
                 $_SESSION['vista'] = $vistas['modOneProducto'];
                 require_once $vistas['layout'];
             }   
-    
         }else
         {
             $_SESSION['vista'] = $vistas['modificarProducto'];
-            require_once $vistas['layout'];
+                require_once $vistas['layout'];
         }
+
+            
     
     }elseif($_SESSION['vista']==$vistas['modOneProducto'])
     {
         if(isset($_POST['codigo']))
+        {
+            $_SESSION['codigoProducto']=$_POST['codigo'];
+
+            if(validarDescripcionModProdu()==true && validarPrecioModProdu()==true && validarStockModProdu() ==true)
             {
-                $_SESSION['codigoProducto']=$_POST['codigo'];
-    
-            }
-    
-            $boton ='modificarProducto';
-    
-            if(validarNombreComp($boton)==true && validarMail($boton) == true && validarFecha($boton) ==true && validarPass($boton)==true)
-            {
+
+                $codigo = $_REQUEST['codigo'];
+                $descripcion = $_REQUEST['descripcion'];
+                $precio = $_REQUEST['precio'];
+                $stock = $_REQUEST['stock'];
+                $imagenAlta = $_REQUEST['imagenAlta'];
+                $imagenBaja = $_REQUEST['imagenBaja'];
+                $actualizaProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
                 
-    
-                $user=$_REQUEST['user'];
-                $encrip = sha1($_REQUEST['pass']);
-                $nCompleto=$_REQUEST['nCompleto'];
-                $cElectronico=$_REQUEST['correo'];
-                $fecha=$_REQUEST['fecha'];
-                $perfil=$_SESSION['perfil'];
-                $_SESSION['nombre']=$nCompleto;
-                $usuarioAct = new Usuario($user, $nCompleto, $encrip, $cElectronico, $fecha, $perfil);
-    
-                if(UsuarioDAO::update($usuarioAct)!=0)
-                {
-                    $_SESSION['pagina']='perfil';
-                    header('Location: index.php');
-                }
-    
-    
-            
+                ProductoDAO::update($actualizaProducto);
+
+                $_SESSION['vista'] = $vistas['modificarProducto'];
+                require_once $vistas['layout'];
+
+
             }else
             {
                 $_SESSION['vista'] = $vistas['modOneProducto'];
                 require_once $vistas['layout'];
             }   
+        }else
+        {
+            $_SESSION['vista'] = $vistas['modOneProducto'];
+                require_once $vistas['layout'];
+        }
+
     }
 
     else

@@ -5,7 +5,11 @@
     $producto = ProductoDAO::buscaById($_SESSION['codigoProducto']);
 
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">        
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post"> 
+    
+        <input type="hidden" name="imagenAlta" id ="imagenAlta" value="<?php echo $producto->imagenAlta;?>">
+        <input type="hidden" name="imagenBaja" id="imagenBaja" value="<?php echo $producto->imagenBaja;?>">
+
         <section>
             <label for="codigo">C. Producto</label>
             <input style="color: #c57485;" type="text" onfocus="this.blur()" name="codigo" id="codigo" readonly="readonly" value="<?php echo $producto->codigoProducto ?>">
@@ -30,7 +34,7 @@
 
         <section>
             <label for="stock">Stock</label>
-            <input type="number" name="stock" id="stock" value="<?php recordarGenericoMod("stock", $producto->stock, "modificarProducto")?>">
+            <input style="color: #c57485;" type="number" name="stock" id="stock" onfocus="this.blur()" readonly="readonly" value="<?php recordarGenericoMod("stock", $producto->stock, "modificarProducto")?>">
             
         </section>
 

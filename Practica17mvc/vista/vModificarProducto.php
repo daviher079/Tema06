@@ -17,7 +17,6 @@
                         echo "<td>Precio</td>";
                         echo "<td>Stock</td>";
                         echo "<td>Modificar</td>";
-                        echo"<td>Borrar</td>";
                     echo "</tr>";
                 echo "</thead>";
                 echo "<tbody>";
@@ -32,7 +31,6 @@
                         echo "<td>".$producto->stock."</td>";
                         echo "<form action='". $_SERVER['PHP_SELF']."' method='post'>";
                         echo "<td><input type='submit' id ='producto' value='Modificar' name='modProducto'></td>";
-                        echo "<td><input type='submit' id ='producto' value='Borrar' name='deleteProducto'></td>";
                         echo "<input type='hidden' name='codigo' value='$producto->codigoProducto'>";
                             //echo "<td><a href='./modificarAlbaran.php?codigo=".$producto->codigoProducto."'>Modificar</a></td>";
                             //echo "<td><a href='./borrarAlbaran.php?codigo=".$producto->codigoProducto."'>Borrar</a></td>";

@@ -32,9 +32,23 @@
         exit();
     }elseif(isset($_POST['finalizarCompra']))
     {
+        $user = $_SESSION["user"];
+        $fecha = date ('Y-m-d', time());
+        $codigo = $_REQUEST['codigo'];
+        $cantidad = (int)$_REQUEST['nProductos'];
+        $stock = (int)$_REQUEST['stock'];
+        $precioTotal = (float)$_REQUEST['precioFinal'];
+
+        $ventaNueva = new Venta(0, $user, $fecha, $codigo, $cantidad, $precioTotal);
+        $productoModStock = new Producto($codigo, '', 0, $stock, '', '');
+        VentaDAO::save($ventaNueva);
+        ProductoDAO::updateStock($productoModStock, $cantidad);
             
-        generarVenta();
-        //funcion que genera una compra
+        $_SESSION['pagina']='inicio';
+        header('Location: index.php');
+            
+            
+
 
     }elseif(isset($_POST['verProductos']))
     {

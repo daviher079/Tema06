@@ -2,6 +2,7 @@ window.addEventListener("load", iniciar);
 var accion = false;
 //objeto de Ajax
 var miXHR;
+
 function iniciar() {
     var codigo = document.getElementById("codigo").value;
 	var boton = document.getElementById("deseo");
