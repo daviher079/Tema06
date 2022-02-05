@@ -104,12 +104,23 @@ elseif(isset($_POST['modificarPerfil']))
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
 
+}elseif(isset($_POST['mostrarAlbaranes']))
+{
+
+    $_SESSION["pagina"] = "cAlbaranes";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
 }else
 {
 
     //Suponiendo que es mi perfil
+
     $_SESSION['vista']= $vistas['perfil'];
     require_once $vistas['layout'];
+        
+    
+    
 }
 
 

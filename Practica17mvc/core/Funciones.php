@@ -145,6 +145,22 @@
         return $bandera;
     }
 
+    function validarModFechaAlbaran($boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['fechaAlbaran']) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
+        return $bandera;
+    }
+
+    
+
     function validarCantidadModVenta($boton)
     {
         $bandera=true;
@@ -197,6 +213,20 @@
             $bandera=false;
         }
 
+        return $bandera;
+    }
+
+    function validarCantidadModAlbaran($boton)
+    {
+        $bandera=true;
+        if(!empty($_REQUEST['cantidad']) && isset($_REQUEST[$boton]))
+        {
+            $bandera=true;    
+        }
+        else
+        {
+            $bandera=false;
+        }
         return $bandera;
     }
 

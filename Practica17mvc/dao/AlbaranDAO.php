@@ -9,12 +9,12 @@ class AlbaranDAO implements DAO
 
         $consulta = ConexionBD::ejecutaConsulta($sql, []);
         $cont =0;
-        
+        $registros = array();
         
         while($row = $consulta->fetchObject())
         {
-            $albaran = new Albaran($row->codigoAlbaran,
-                $row->fechaAlbaran, $row->codigoProducto, $row->cantidad, $row->usuarioNickA);
+            $albaran = new Albaran($row->idAlbaran,
+                $row->fechaAlbaran, $row->codigoProductoA, $row->cantidad, $row->usuarioNickA);
                 $registros[$cont]=$albaran;
                 $cont++;
 
@@ -23,42 +23,39 @@ class AlbaranDAO implements DAO
 
     }
 
-
-
     
-
     //Busca por clave primaria
     public static function buscaById($id)
     {
-        /*$sql = "select * from usuarios where usuario = ?";
+        $sql = "select * from albaran where idAlbaran = ?";
         $consulta = ConexionBD::ejecutaConsulta($sql, [$id]);
         $usuario =null;
 
         while($row = $consulta->fetchObject())
         {
-            $usuario = new Usuario($row->usuario, $row->nombre, $row->clave, $row->correo, $row->fechaNacimiento, $row->perfil);  
+            $albaran = new Albaran($row->idAlbaran, $row->fechaAlbaran, $row->codigoProductoA, $row->cantidad, $row->usuarioNickA);  
         }
 
-        return $usuario;*/
+        return $albaran;
     }
 
     //modifica o actualiza
     public static function update($objeto)
     {
-        /*$consulta = 0;
-        $sql="update usuarios 
-            set clave = ?, 
-            nombre = ?, 
-            correo = ?, 
-            fechaNacimiento = ?,
-            perfil = ? 
-            WHERE usuario = ?";
+        $consulta = 0;
+        $sql="update albaran 
+        set fechaAlbaran = ?, 
+        codigoProductoA = ?, 
+        cantidad = ?,  
+        usuarioNickA = ?
+        WHERE idAlbaran = ?";
             
-        $parametros = array($objeto->clave, $objeto->nombre, $objeto->correo, $objeto->fechaNacimiento, $objeto->perfil, $objeto->usuario);
+        $parametros = array($objeto->fechaAlbaran, $objeto->codigoProducto, $objeto->cantidad, $objeto->usuarioNickA, $objeto->codigoAlbaran);
+
 
         $consulta = ConexionBD::ejecutaTransaccion($sql, $parametros);
     
-        return $consulta;*/
+        return $consulta;
     }
     
     //crea o inserta 
@@ -83,7 +80,9 @@ class AlbaranDAO implements DAO
     //borrar
     public static function delete($objeto)
     {
-        echo "delete ";
+        $sql = "delete from albaran where idAlbaran = ?";
+        $parametros = array($objeto);
+        ConexionBD::ejecutaTransaccion($sql, $parametros);
     }
         
 

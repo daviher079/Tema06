@@ -25,6 +25,20 @@
         header("Location: index.php");
         exit();
         
+    }elseif(isset($_POST['mostrarVentas']))
+    {
+    
+        $_SESSION["pagina"] = "cVentas";
+        $controlador=$controladores[$_SESSION['pagina']];
+        require_once $controlador;
+    
+    }elseif(isset($_POST['mostrarAlbaranes']))
+    {
+    
+        $_SESSION["pagina"] = "cAlbaranes";
+        $controlador=$controladores[$_SESSION['pagina']];
+        require_once $controlador;
+    
     }elseif(isset($_POST['perfil']))
     {
         $_SESSION["pagina"] = "perfil";

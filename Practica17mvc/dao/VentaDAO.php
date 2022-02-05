@@ -10,7 +10,7 @@ class VentaDAO implements DAO
 
         $consulta = ConexionBD::ejecutaConsulta($sql, []);
         $cont =0;
-        
+        $registros =array();
         
         while($row = $consulta->fetchObject())
         {
@@ -75,7 +75,10 @@ class VentaDAO implements DAO
     //borrar
     public static function delete($objeto)
     {
-        echo "delete ";
+        $sql = "delete from venta where idVenta = ?";
+        $parametros = array($objeto);
+        ConexionBD::ejecutaTransaccion($sql, $parametros);
+
     }
         
 

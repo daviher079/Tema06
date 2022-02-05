@@ -179,6 +179,13 @@ elseif(isset($_POST['modificarProductos']))
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
 
+}elseif(isset($_POST['mostrarAlbaranes']))
+{
+
+    $_SESSION["pagina"] = "cAlbaranes";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
 }else
 {
     
@@ -309,6 +316,13 @@ elseif(isset($_POST['modificarProductos']))
     {
     
         $_SESSION["pagina"] = "cVentas";
+        $controlador=$controladores[$_SESSION['pagina']];
+        require_once $controlador;
+    
+    }elseif(isset($_POST['mostrarAlbaranes']))
+    {
+    
+        $_SESSION["pagina"] = "cAlbaranes";
         $controlador=$controladores[$_SESSION['pagina']];
         require_once $controlador;
     

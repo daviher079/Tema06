@@ -37,7 +37,8 @@ $controladores =
     'perfil' => 'controlador/cPerfil.php',
     'finalizarCompra' => 'controlador/cFinalizarCompra.php',
     'cProducto' => 'controlador/cProducto.php',
-    'cVentas' => 'controlador/cVentas.php'
+    'cVentas' => 'controlador/cVentas.php',
+    'cAlbaranes' => 'controlador/cAlbaran.php'
 ];
 
 $vistas = 
@@ -55,7 +56,9 @@ $vistas =
     'modificarProducto' => 'vista/vModificarProducto.php',
     'modOneProducto' => 'vista/vModOneProducto.php',
     'verVentas' => 'vista/vVerVentas.php',
-    'modVenta' => 'vista/vModVenta.php'
+    'modVenta' => 'vista/vModVenta.php',
+    'verAlbaranes' => 'vista/vVerAlbaranes.php',
+    'modAlbaran' => 'vista/vModAlbaran.php'
 ];
 
 

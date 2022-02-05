@@ -65,6 +65,13 @@ elseif(isset($_POST['login']))
     $controlador=$controladores[$_SESSION['pagina']];
     require_once $controlador;
 
+}elseif(isset($_POST['mostrarAlbaranes']))
+{
+
+    $_SESSION["pagina"] = "cAlbaranes";
+    $controlador=$controladores[$_SESSION['pagina']];
+    require_once $controlador;
+
 }else
 {
     if(isset($_POST['modVenta']))
@@ -127,6 +134,15 @@ elseif(isset($_POST['login']))
             require_once $vistas['layout'];
         }
 
+    }elseif(isset($_POST['BorrarVenta']))
+    {
+        if(isset($_POST['codigo']))
+        {
+            
+            VentaDAO::delete($_POST['codigo']);
+            $_SESSION['vista']= $vistas['verVentas'];
+            require_once $vistas['layout'];
+        }
     }else
     {
 
@@ -191,8 +207,21 @@ elseif(isset($_POST['login']))
 
         }else
         {
-            $_SESSION['vista']= $vistas['verVentas'];
-            require_once $vistas['layout'];
+            if(isset($_POST['BorrarVenta']))
+            {
+                if(isset($_POST['codigo']))
+                {
+                    
+                    VentaDAO::delete($_POST['codigo']);
+                    $_SESSION['vista']= $vistas['verVentas'];
+                    require_once $vistas['layout'];
+                }
+            }else
+            {
+                $_SESSION['vista']= $vistas['verVentas'];
+                require_once $vistas['layout'];
+
+            }
 
         }
 
