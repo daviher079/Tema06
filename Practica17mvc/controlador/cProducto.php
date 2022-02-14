@@ -195,8 +195,7 @@ elseif(isset($_POST['modificarProductos']))
         $_SESSION['vista'] = $vistas['listaDeseos'];
         require_once $vistas['layout'];
 
-    }
-    elseif($_SESSION['vista']==$vistas['comprarProducto'])
+    }elseif($_SESSION['vista']==$vistas['comprarProducto'])
     {
 
         if(isset($_POST['codigo']))
@@ -212,34 +211,34 @@ elseif(isset($_POST['modificarProductos']))
     {
 
     
-    if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
-    {
-            $codigo = $_REQUEST['codigo'];
-            $descripcion = $_REQUEST['descripcion'];
-            $precio = (float)$_REQUEST['precio']; 
-            $stock = (int)$_REQUEST['stock'];
-            $imagenAlta="";
-            $imagenBaja="";
+        if(comprobarCodigoControlador()==true && validarDescripcionInsertProdu() == true && validarPrecioInsertProdu() == true && validarStockInsertProdu() ==true)
+        {
+                $codigo = $_REQUEST['codigo'];
+                $descripcion = $_REQUEST['descripcion'];
+                $precio = (float)$_REQUEST['precio']; 
+                $stock = (int)$_REQUEST['stock'];
+                $imagenAlta="";
+                $imagenBaja="";
 
-            $fecha = date ('Y-m-d', time());
-            $cantidad = (int)$_REQUEST['stock'];
-            $usuario= $_SESSION['user'];
+                $fecha = date ('Y-m-d', time());
+                $cantidad = (int)$_REQUEST['stock'];
+                $usuario= $_SESSION['user'];
 
-            $insertarProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
-            $insertarAlbaran = new Albaran(0, $fecha, $codigo, $stock, $usuario);    
-            ProductoDAO::save($insertarProducto);
-            AlbaranDAO::save($insertarAlbaran);
-            $_SESSION['pagina']='inicio';
-            header('Location: index.php');
-            exit();
+                $insertarProducto = new Producto($codigo, $descripcion, $precio, $stock, $imagenAlta, $imagenBaja);
+                $insertarAlbaran = new Albaran(0, $fecha, $codigo, $stock, $usuario);    
+                ProductoDAO::save($insertarProducto);
+                AlbaranDAO::save($insertarAlbaran);
+                $_SESSION['pagina']='inicio';
+                header('Location: index.php');
+                exit();
 
 
 
-    }else
-    {
-        $_SESSION['vista'] = $vistas['insertarProducto'];
-        require_once $vistas['layout'];
-    }
+        }else
+        {
+            $_SESSION['vista'] = $vistas['insertarProducto'];
+            require_once $vistas['layout'];
+        }
     
     }elseif($_SESSION['vista']==$vistas['modificarProducto'])
     {
@@ -326,9 +325,7 @@ elseif(isset($_POST['modificarProductos']))
         $controlador=$controladores[$_SESSION['pagina']];
         require_once $controlador;
     
-    }
-
-    else
+    }else
     {
         
         $_SESSION['vista'] = $vistas['verProductos']; 
